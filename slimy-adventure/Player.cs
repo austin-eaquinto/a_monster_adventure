@@ -3,55 +3,76 @@ using Godot;
 public partial class Player : Area2D
 {
 	[Export]
-	public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
+	public int Speed { get; set; } = 300;
 
-	public Vector2 ScreenSize; // Size of the game window.
+	public Vector2 ScreenSize;
+	
+	private string _lastDirection = "down";
 
-public override void _Ready()
-{
-	ScreenSize = GetViewportRect().Size;
-}
-
-public override void _Process(double delta)
-{
-	var velocity = Vector2.Zero; // The player's movement vector.
-
-	if (Input.IsActionPressed("move_right"))
+	public override void _Ready()
 	{
-		velocity.X += 1;
+		ScreenSize = GetViewportRect().Size;
 	}
 
-	if (Input.IsActionPressed("move_left"))
+	public override void _Process(double delta)
 	{
-		velocity.X -= 1;
-	}
+		Vector2 velocity = Vector2.Zero;
 
-	if (Input.IsActionPressed("move_down"))
-	{
-		velocity.Y += 1;
-	}
+		velocity.X = Input.GetAxis("move_left", "move_right");
+		velocity.Y = Input.GetAxis("move_up", "move_down");
 
-	if (Input.IsActionPressed("move_up"))
-	{
-		velocity.Y -= 1;
-	}
+		// Horizontal movement has priority over Vertical
+		if (velocity.X != 0)
+		{
+			velocity.Y = 0;
+		}
 
-	var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-	if (velocity.Length() > 0)
-	{
-		velocity = velocity.Normalized() * Speed;
-		animatedSprite2D.Play();
-	}
-	else
-	{
-		animatedSprite2D.Stop();
-	}
-	Position += velocity * (float)delta;
-	Position = new Vector2(
-		x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-		y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
-	);
-}
+		if (velocity.Length() > 0)
+		{
+			// Casting Speed to (float) to prevent math errors
+			velocity = velocity.Normalized() * (float)Speed;
 
+			/* ---Movement Animation Below--- */
+			if (velocity.X != 0)
+			{
+				if (velocity.X > 0)
+				{
+					animatedSprite2D.Animation = "walk_right";
+					_lastDirection = "right";
+				}
+				else
+				{
+					animatedSprite2D.Animation = "walk_left";
+					_lastDirection = "left";
+				}
+			}
+			else if (velocity.Y != 0)
+			{
+				if (velocity.Y > 0)
+				{
+					animatedSprite2D.Animation = "walk_down";
+					_lastDirection = "down";
+				}
+				else
+				{
+					animatedSprite2D.Animation = "walk_up";
+					_lastDirection = "up";
+				}
+			}
+			/* ---Movement Animation Above--- */
+		}
+		else
+		{
+			animatedSprite2D.Play("idle_" + _lastDirection);
+		}
+
+		Position += velocity * (float)delta;
+
+		Position = new Vector2(
+			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
+			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
+		);
+	}
 }

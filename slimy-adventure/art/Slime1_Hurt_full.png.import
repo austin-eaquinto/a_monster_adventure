@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bccuuh36gg7t1"
-path="res://.godot/imported/frame_2.png-ac711cf97d2d89a7789b44ea553a6762.ctex"
+uid="uid://bb2lxe0t3f54d"
+path="res://.godot/imported/Slime1_Hurt_full.png-1f1b6865fbec5ad11648485cd3392c65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/frame_2.png"
-dest_files=["res://.godot/imported/frame_2.png-ac711cf97d2d89a7789b44ea553a6762.ctex"]
+source_file="res://art/Slime1_Hurt_full.png"
+dest_files=["res://.godot/imported/Slime1_Hurt_full.png-1f1b6865fbec5ad11648485cd3392c65.ctex"]
 
 [params]
 
