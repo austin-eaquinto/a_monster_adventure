@@ -25,7 +25,7 @@ public partial class State : Node
 	public virtual void enter()
 	{
 		enteredParent = GetParent();
-		GD.Print(enteredParent);
+		// GD.Print(enteredParent);
 		SetProcess(true);
 	}
 
