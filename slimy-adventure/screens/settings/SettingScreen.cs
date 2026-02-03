@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Credits : Control
+public partial class SettingScreen : Control
 {
     private void _on_back_pressed()
     {
