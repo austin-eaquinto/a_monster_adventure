@@ -10,7 +10,7 @@ public partial class PlayerWalkState : CharacterState
 	public override void enter()
 	{
 		base.enter();
-		if (character != null) (character as Player).animation_name = "walk_";
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,34 +20,34 @@ public partial class PlayerWalkState : CharacterState
 
 		if (input != Vector2.Zero)
 		{
-			character.Velocity = input * (character as Player).Speed;
+			(character as Character).velocity = input * (character as Character).Speed;
 
 			if (input.X != 0.0)
 			{
 				if (input.X > 0)
 				{
-					(character as Player).facingDirection = "right";
+					(character as Character).facingDirection = "right";
 				} 
 				else
 				{
-					(character as Player).facingDirection = "left";
+					(character as Character).facingDirection = "left";
 				}
 			}
 			else if (input.Y != 0.0)
 			{
 				if (input.Y > 0)
 				{
-					(character as Player).facingDirection = "down";
+					(character as Character).facingDirection = "down";
 				} 
 				else
 				{
-					(character as Player).facingDirection = "up";
+					(character as Character).facingDirection = "up";
 				}
 			}
 		}
 		else
 		{
-			character.Velocity = Vector2.Zero;
+			(character as Character).velocity = Vector2.Zero;
 			exit(playerIdleState);
 		}
 	}
