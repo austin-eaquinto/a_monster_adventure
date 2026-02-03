@@ -3,16 +3,36 @@ using System;
 
 public partial class Field : Node2D
 {
-	private Control _PauseMenu;
-	bool paused = false;
+	private Control _pauseMenu;
+	private bool _paused = false;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_pauseMenu = GetNode<Control>("PauseMenu");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+
 	public override void _Process(double delta)
 	{
+		if (Input.IsActionJustPressed("pause"))
+        {
+            PauseMenu();
+        }
 	}
+
+	public void PauseMenu()
+    {
+        if (_paused)
+        {
+            _pauseMenu.Hide();
+            Engine.TimeScale = 1;
+        }
+        else
+        {
+            _pauseMenu.Show();
+            Engine.TimeScale = 0;
+        }
+
+        _paused = !_paused;
+    }
 }
