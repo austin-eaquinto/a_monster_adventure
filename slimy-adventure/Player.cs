@@ -16,9 +16,10 @@ public partial class Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		MoveAndSlide();
 		
 		var animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite.Play(animation_name + facingDirection);
-		
+
+		MoveAndSlide();
 	}
+}
