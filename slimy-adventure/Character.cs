@@ -18,12 +18,20 @@ public partial class Character : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
+<<<<<<< HEAD:slimy-adventure/Player.cs
+=======
 		Velocity = velocity;
 		MoveAndSlide();
 		velocity = Velocity;
+>>>>>>> eb8ac6dbd45f770989ee99a30ef40372d3fdca40:slimy-adventure/Character.cs
 		
 		var animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite.Play(animation_name + facingDirection);
-		
+
+		MoveAndSlide();
 	}
+<<<<<<< HEAD:slimy-adventure/Player.cs
 }
+=======
+}
+>>>>>>> eb8ac6dbd45f770989ee99a30ef40372d3fdca40:slimy-adventure/Character.cs
