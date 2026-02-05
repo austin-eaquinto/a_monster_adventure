@@ -10,7 +10,7 @@ public partial class PlayerIdleState : CharacterState
 	public override void enter()
 	{
 		base.enter();
-		if (character != null) (character as Player).animation_name = "idle_";
+		if (character != null) (character as Character).animation_name = "idle_";
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
