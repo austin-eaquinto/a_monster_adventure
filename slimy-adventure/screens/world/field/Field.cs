@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Field : Node2D
+public partial class Field : TileMapLayer
 {
 	private Control _pauseMenu;
 	private bool _paused = false;
