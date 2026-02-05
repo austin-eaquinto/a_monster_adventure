@@ -849,7 +849,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jxqw"]
 radius = 16.0
-height = 56.0
+height = 34.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_i3pqv")
@@ -876,5 +876,5 @@ playerIdleState = NodePath("../PlayerIdleState")
 metadata/_custom_type_script = "uid://3jvrh46wl7l7"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
