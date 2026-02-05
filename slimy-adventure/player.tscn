@@ -848,10 +848,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jxqw"]
-radius = 16.0
-height = 56.0
+radius = 7.0
+height = 20.000002
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, 5)
 script = ExtResource("1_i3pqv")
 metadata/_edit_group_ = true
 
@@ -861,6 +862,7 @@ sprite_frames = SubResource("SpriteFrames_j6q74")
 animation = &"hurt_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
@@ -876,4 +878,5 @@ playerIdleState = NodePath("../PlayerIdleState")
 metadata/_custom_type_script = "uid://3jvrh46wl7l7"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true

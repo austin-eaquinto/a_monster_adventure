@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgc6dsl8xpi7m"
-path="res://.godot/imported/Trees and bushes.png-0ec181e73e3801c903f3533582364b0b.ctex"
+uid="uid://bpvy70ldl8pux"
+path="res://.godot/imported/Exterior_Tileset.png-1ff6f6e1d9a788d2dade8f854f58c2a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screens/world/field/Trees and bushes.png"
-dest_files=["res://.godot/imported/Trees and bushes.png-0ec181e73e3801c903f3533582364b0b.ctex"]
+source_file="res://art/fieldAssets/Exterior_Tileset.png"
+dest_files=["res://.godot/imported/Exterior_Tileset.png-1ff6f6e1d9a788d2dade8f854f58c2a7.ctex"]
 
 [params]
 
