@@ -6,26 +6,49 @@ using System.Drawing;
 public partial class GuardChaseState : CharacterState
 {
 	[Export]
-	public State patrolState { get; set; } = null;
+	public State pauseState { get; set; } = null;
+	[Export]
+	public State catchState { get; set; } = null;
 
+	
+	[Export]
+	public Area2D captureArea { get; set;} = null;
 	[Export]
 	public NavigationAgent2D navAgent { get; set;} = null;
 
+	[Export]
+	public float mustHaveBeenTheWindTime { get; set;} = 5.0f;
+
 	protected Timer timer = null;
 
-    public override void _Ready()
-    {
-        base._Ready();
+	public override void _Ready()
+	{
+		base._Ready();
+
 		timer = new Timer();
-		timer.WaitTime = 2;
+		timer.WaitTime = mustHaveBeenTheWindTime;
 		timer.Timeout += lostPlayer;
 		timer.OneShot = true;
 		AddChild(timer);
-    }
+
+		captureArea.BodyEntered += BodyEnters;
+	}
+
+	protected void BodyEnters(Node2D body)
+	{
+		if (!body.IsInGroup("Player"))
+		{
+			return;
+		}
+		else
+		{
+			exit(catchState);
+		}
+	}
 
 	protected void lostPlayer()
 	{
-		exit(patrolState);
+		exit(pauseState);
 	}
 
 	public override void enter()
