@@ -6,12 +6,14 @@ using System.Drawing;
 public partial class GuardPatrolState : CharacterState
 {
 	[Export]
-	public Line2D line2D { get; set; } = null;
+	public State chasePlayerState { get; set; } = null;
+
 	[Export]
 	public NavigationAgent2D navAgent { get; set;} = null;
 	[Export]
 	public float patrolSpeed = 50.0f;
 
+	protected Line2D line2D = null;
 	protected int pointIndex = 0;
 	protected Vector2 currentPoint = Vector2.Zero;
 
@@ -20,9 +22,12 @@ public partial class GuardPatrolState : CharacterState
 	public override void enter()
 	{
 		base.enter();
-		if (line2D != null)
+		if (character is Guard)
 		{
-			GetNextPoint();
+			line2D = (character as Guard).line2D;
+			
+			if (line2D != null)
+				GetClosestPoint();
 		}
 	}
 	
@@ -32,18 +37,31 @@ public partial class GuardPatrolState : CharacterState
 	{
 		if (line2D != null)
 		{
-			MoveToPoint();
-			GD.Print(currentPoint);
+			SearchForPlayer();
+			
+			MoveToPoint(delta);
 
 			AttemptGetNextPoint();
 		}
 		
 	}
 
-	protected virtual void MoveToPoint()
+	protected virtual void SearchForPlayer()
+	{
+		Character player = GetTree().GetFirstNodeInGroup("Player") as Character;
+		bool seesPlayer = (character as Guard).guardSeesPlayer(player);
+
+		if (seesPlayer) 
+		{
+			exit(chasePlayerState);
+		}
+	}
+
+	protected virtual void MoveToPoint(double delta)
 	{
 
 		Vector2 direction = (navAgent.GetNextPathPosition() - character.GlobalPosition).Normalized();
+		(character as Guard).guardLooks(direction,delta);
 
 		(character as Character).velocity = direction * patrolSpeed;
 
@@ -89,6 +107,29 @@ public partial class GuardPatrolState : CharacterState
 		Vector2[] points = line2D.Points;
 		int numPoints = points.Length;
 		pointIndex = (pointIndex + 1) % numPoints;
+
+		currentPoint = line2D.GlobalPosition + points[pointIndex];
+		navAgent.TargetPosition = currentPoint;
+	}
+	
+	protected virtual void GetClosestPoint()
+	{
+		Vector2[] points = line2D.Points;
+		int closestPointIndex = -1;
+		float closestPointDistance = 9999.9f;
+		
+		for (int i = 0; i < points.Length; i++) 
+		{
+			float pointDistance = (character.GlobalPosition - (line2D.GlobalPosition + points[i])).Length();
+
+			if (pointDistance < closestPointDistance)
+			{
+				closestPointIndex = i;
+				closestPointDistance = pointDistance;
+			}
+		}
+		
+		pointIndex = closestPointIndex;
 
 		currentPoint = line2D.GlobalPosition + points[pointIndex];
 		navAgent.TargetPosition = currentPoint;
