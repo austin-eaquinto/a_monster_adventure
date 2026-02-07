@@ -19,12 +19,11 @@ public partial class Character : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
+		
 		Velocity = velocity;
 		MoveAndSlide();
 		velocity = Velocity;
-		
 		var animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite.Play(animation_name + facingDirection);
-		
 	}
 }
