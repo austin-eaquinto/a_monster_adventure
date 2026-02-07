@@ -23,6 +23,11 @@ Global="*res://Global.cs"
 
 project/assembly_name="Slimy_Adventure"
 
+[global_group]
+
+Player=""
+Enemy=""
+
 [input]
 
 move_right={
