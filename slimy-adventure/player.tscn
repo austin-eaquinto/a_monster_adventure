@@ -878,5 +878,4 @@ playerIdleState = NodePath("../PlayerIdleState")
 metadata/_custom_type_script = "uid://3jvrh46wl7l7"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
