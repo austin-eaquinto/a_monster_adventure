@@ -16,7 +16,7 @@ public partial class Guard : Character
 	public float visionRadius { get; set; } = 600.0f;
 	
 	[Export]
-	public float visionArc { get; set; } = (float)Math.PI / 2.0f;
+	public float visionArc { get; set; } = (135.0f/360.0f)/(2.0f * 3.1415f);
 	
 	Vector2 lookDirection = Vector2.Zero;
 

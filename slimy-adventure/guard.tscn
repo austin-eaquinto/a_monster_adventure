@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5ukg5fe4xo3p"]
+[gd_scene load_steps=12 format=3 uid="uid://b5ukg5fe4xo3p"]
 
 [ext_resource type="Script" uid="uid://b28vpjv2hyymj" path="res://Guard.cs" id="1_aoykg"]
 [ext_resource type="Texture2D" uid="uid://ctjushx6xm0l4" path="res://art/This_Thing.png" id="2_aoykg"]
 [ext_resource type="Script" uid="uid://baofqvuexikko" path="res://state_machines/GuardStates/GuardChaseState.cs" id="4_cruxe"]
+[ext_resource type="Texture2D" uid="uid://7q6n7ycnl5ed" path="res://art/135Cone.png" id="4_tuxdl"]
 [ext_resource type="Script" uid="uid://dwcpryhjkb08v" path="res://state_machines/GuardStates/GuardPauseState.cs" id="5_lrhy8"]
 [ext_resource type="Script" uid="uid://dxvx4vfrdmnm5" path="res://state_machines/GuardStates/GuardPatrolState.cs" id="6_ay375"]
 [ext_resource type="Script" uid="uid://smvkfwp4l6pt" path="res://state_machines/GuardStates/GuardCatchState.cs" id="6_ioqu5"]
@@ -52,20 +53,6 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrhy8"]
 radius = 50.0
 
-[sub_resource type="Gradient" id="Gradient_cruxe"]
-colors = PackedColorArray(1, 0.70837533, 0.6616397, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lrhy8"]
-gradient = SubResource("Gradient_cruxe")
-width = 1200
-height = 1200
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ay375"]
-polygon = PackedVector2Array(54, -1, 25, -46, -32, -47, -52, -1, -39, -61, 29, -59)
-
 [node name="Guard" type="CharacterBody2D" node_paths=PackedStringArray("raycast2D", "lightPivot") groups=["Enemy"]]
 motion_mode = 1
 script = ExtResource("1_aoykg")
@@ -75,9 +62,18 @@ Speed = 250
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lrhy8")
 animation = &"idle_left"
+
+[node name="LightPivot" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="LightPivot"]
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("4_tuxdl")
+texture_scale = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5707964
@@ -117,13 +113,3 @@ debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea"]
 shape = SubResource("CircleShape2D_lrhy8")
-
-[node name="LightPivot" type="Node2D" parent="."]
-
-[node name="PointLight2D" type="PointLight2D" parent="LightPivot"]
-blend_mode = 2
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_lrhy8")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="LightPivot"]
-occluder = SubResource("OccluderPolygon2D_ay375")
