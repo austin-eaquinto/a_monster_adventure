@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Slimy_Adventure"
-run/main_scene="uid://mgnrp1qhc7em"
+run/main_scene="uid://xwkkg3a7hp2x"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Global.cs"
 
 [dotnet]
 
