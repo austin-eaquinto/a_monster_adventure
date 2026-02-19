@@ -16,7 +16,7 @@ public partial class Guard : Character
 	public float visionRadius { get; set; } = 600.0f;
 	
 	[Export]
-	public float visionArc { get; set; } = (135.0f/360.0f)/(2.0f * 3.1415f);
+	public float visionArc { get; set; } = 0.982f;
 	
 	Vector2 lookDirection = Vector2.Zero;
 
@@ -31,9 +31,47 @@ public partial class Guard : Character
 		lightPivot.Rotation = newAngle - Mathf.Pi / 2.0f;
 	}
 
-	public bool guardSeesPlayer(Character player)
+
+	public Character _targetPrisoner;
+	public bool GuardSeesNewTargetPrisoner()
 	{
-		Vector2 directionToPlayer = ToLocal(player.GlobalPosition).Normalized();
+
+		Character closestSeenPrisoner = null;
+		float closestPrisonerDistance = 999.9f;
+
+		foreach (Character prisoner in GetTree().GetNodesInGroup("Prisoner"))
+		{
+			if (GuardSeesPrisoner(prisoner))
+			{
+				float prisonerDistance = (GlobalPosition - prisoner.GlobalPosition).Length();
+
+				if (prisonerDistance < closestPrisonerDistance)
+				{
+					closestSeenPrisoner = prisoner;
+					closestPrisonerDistance = prisonerDistance;
+				}
+			}
+		}
+		
+		if (closestSeenPrisoner != null)
+		{
+			_targetPrisoner = closestSeenPrisoner;
+			return true;
+		}
+		
+		return false;
+	}
+
+
+
+	public bool GuardSeesPrisoner(Character prisoner)
+	{
+		if (prisoner == null)
+		{
+			return false;
+		}
+
+		Vector2 directionToPlayer = ToLocal(prisoner.GlobalPosition).Normalized();
 
 		if (Math.Abs(lookDirection.AngleTo(directionToPlayer)) > visionArc)
 		{
@@ -45,7 +83,7 @@ public partial class Guard : Character
 
 		var collider = raycast2D.GetCollider();
 
-		if (collider != player)
+		if (collider != prisoner)
 		{
 			return false;
 		}
@@ -54,5 +92,6 @@ public partial class Guard : Character
 			return true;
 		}
 	}
+	
 
 }

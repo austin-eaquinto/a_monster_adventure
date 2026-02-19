@@ -48,10 +48,10 @@ public partial class GuardPatrolState : CharacterState
 
 	protected virtual void SearchForPlayer()
 	{
-		Character player = GetTree().GetFirstNodeInGroup("Player") as Character;
-		bool seesPlayer = (character as Guard).guardSeesPlayer(player);
+		bool seesPrisoner = (character as Guard).GuardSeesPrisoner((character as Guard)._targetPrisoner);
+		if (!seesPrisoner) seesPrisoner = (character as Guard).GuardSeesNewTargetPrisoner();
 
-		if (seesPlayer) 
+		if (seesPrisoner) 
 		{
 			exit(chasePlayerState);
 		}

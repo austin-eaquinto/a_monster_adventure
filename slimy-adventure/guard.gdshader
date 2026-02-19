@@ -9,10 +9,10 @@ void vertex() {
 void fragment() {
 	vec2 nUV = (UV - vec2(0.5,0.5)) / sqrt(pow(UV.x - 0.5,2)+pow(UV.y - 0.5,2));
 	if (abs(atan(nUV.x,nUV.y)) < arcAngle/2.0){
-		COLOR = vec4(1.0,1.0,1.0,1.0);
+		COLOR = COLOR;
 	}
 	else{
-		COLOR = vec4(1.0,1.0,1.0,0.0);
+		COLOR = vec4(0.0,0.0,0.0,1.0);
 	}
 }
 

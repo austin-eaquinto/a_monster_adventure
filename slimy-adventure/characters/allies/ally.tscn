@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6y8h5xoghkgt"]
+
+[ext_resource type="Script" uid="uid://dbk7dhv76aeir" path="res://characters/allies/Ally.cs" id="1_ug7p0"]
+[ext_resource type="Texture2D" uid="uid://bb4xq1byxp73a" path="res://art/Nice_Thing.png" id="2_ej3vy"]
+[ext_resource type="Script" uid="uid://dfp13l8miqkmy" path="res://state_machines/AllyStates/AllyFollowState.cs" id="3_ug7p0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hymoo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ej3vy")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ej3vy")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ej3vy")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ej3vy")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay375"]
+radius = 16.0
+
+[node name="Ally" type="CharacterBody2D" groups=["Prisoner"]]
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_ug7p0")
+Speed = 275
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hymoo")
+animation = &"idle_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_ay375")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+neighbor_distance = 24256.88
+debug_enabled = true
+
+[node name="AllyFollowState" type="Node" parent="." node_paths=PackedStringArray("navAgent")]
+script = ExtResource("3_ug7p0")
+navAgent = NodePath("../NavigationAgent2D")
+enterOnReady = true
+metadata/_custom_type_script = "uid://dfp13l8miqkmy"

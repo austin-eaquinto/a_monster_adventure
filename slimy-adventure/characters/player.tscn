@@ -1,12 +1,12 @@
 [gd_scene load_steps=118 format=3 uid="uid://mgnrp1qhc7em"]
 
-[ext_resource type="Script" uid="uid://d3058y0tuffv4" path="res://Character.cs" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://bi2g7vuqu0rfv" path="res://characters/Player.cs" id="1_j31ep"]
 [ext_resource type="Texture2D" uid="uid://bb2lxe0t3f54d" path="res://art/Slime1_Hurt_full.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c5fwikaraumsh" path="res://art/Slime1_Idle_full.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://jl6q06tnv1g4" path="res://art/Slime1_Run_full.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dnt8clc48qsdv" path="res://art/Slime1_Walk_full.png" id="5_dw050"]
-[ext_resource type="Script" uid="uid://bhwk1nfu4aoxf" path="res://state_machines/PlayerIdleState.cs" id="6_1jxqw"]
-[ext_resource type="Script" uid="uid://3jvrh46wl7l7" path="res://state_machines/PlayerWalkState.cs" id="7_dw050"]
+[ext_resource type="Script" uid="uid://bhwk1nfu4aoxf" path="res://state_machines/PlayerStates/PlayerIdleState.cs" id="6_1jxqw"]
+[ext_resource type="Script" uid="uid://3jvrh46wl7l7" path="res://state_machines/PlayerStates/PlayerWalkState.cs" id="7_dw050"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("2_sweqy")
@@ -851,9 +851,9 @@ animations = [{
 radius = 7.0
 height = 20.000002
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Prisoner"]]
 motion_mode = 1
-script = ExtResource("1_i3pqv")
+script = ExtResource("1_j31ep")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -878,5 +878,4 @@ playerIdleState = NodePath("../PlayerIdleState")
 metadata/_custom_type_script = "uid://3jvrh46wl7l7"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true

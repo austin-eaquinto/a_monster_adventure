@@ -3,12 +3,10 @@ using System;
 using System.Drawing;
 
 [GlobalClass]
-public partial class GuardPauseState : CharacterState
+public partial class AllyPauseState : CharacterState
 {
 	[Export]
 	public State nextState { get; set; } = null;
-	[Export]
-	public State chasePlayerState { get; set; } = null;
 
 	[Export]
 	public float pauseTimer { get; set; } = 2.0f;
@@ -30,18 +28,6 @@ public partial class GuardPauseState : CharacterState
 		exit(nextState);
 	}
 
-	protected virtual void SearchForPlayer()
-	{
-		bool seesPrisoner = (character as Guard).GuardSeesPrisoner((character as Guard)._targetPrisoner);
-		if (!seesPrisoner) seesPrisoner = (character as Guard).GuardSeesNewTargetPrisoner();
-
-		if (seesPrisoner) 
-		{
-			timer.Stop();
-			exit(chasePlayerState);
-		}
-	}
-
 	public override void enter()
 	{
 		base.enter();
@@ -51,6 +37,6 @@ public partial class GuardPauseState : CharacterState
 	
 	public override void _Process(double delta)
 	{
-		SearchForPlayer();
+		return;
 	}
 }

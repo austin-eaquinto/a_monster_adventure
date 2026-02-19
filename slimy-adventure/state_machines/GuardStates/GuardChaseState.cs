@@ -68,10 +68,11 @@ public partial class GuardChaseState : CharacterState
 
 	protected virtual void SearchForPlayer()
 	{
-		Character player = GetTree().GetFirstNodeInGroup("Player") as Character;
-		bool seesPlayer = (character as Guard).guardSeesPlayer(player);
+		bool seesPrisoner = (character as Guard).GuardSeesPrisoner((character as Guard)._targetPrisoner);
+		if (!seesPrisoner) seesPrisoner = (character as Guard).GuardSeesNewTargetPrisoner();
+		
 
-		if (seesPlayer) 
+		if (seesPrisoner) 
 		{
 			timer.Start();
 		}
@@ -79,8 +80,8 @@ public partial class GuardChaseState : CharacterState
 
 	protected virtual void Chase(double delta)
 	{
-		Character player = GetTree().GetFirstNodeInGroup("Player") as Character;
-		navAgent.TargetPosition = player.GlobalPosition;
+		Character prisoner = (character as Guard)._targetPrisoner;
+		navAgent.TargetPosition = prisoner.GlobalPosition;
 		
 		Vector2 direction = (navAgent.GetNextPathPosition() - character.GlobalPosition).Normalized();
 		(character as Guard).guardLooks(direction,delta);
