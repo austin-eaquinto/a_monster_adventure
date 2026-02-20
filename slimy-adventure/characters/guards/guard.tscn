@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b28vpjv2hyymj" path="res://characters/guards/Guard.cs" id="1_aoykg"]
 [ext_resource type="Texture2D" uid="uid://ctjushx6xm0l4" path="res://art/This_Thing.png" id="2_aoykg"]
-[ext_resource type="Shader" uid="uid://cccvcfeu1amsy" path="res://guard.gdshader" id="4_28sy7"]
+[ext_resource type="Shader" uid="uid://cccvcfeu1amsy" path="res://characters/guards/guardLight.gdshader" id="4_28sy7"]
 [ext_resource type="Script" uid="uid://baofqvuexikko" path="res://state_machines/GuardStates/GuardChaseState.cs" id="4_cruxe"]
 [ext_resource type="Script" uid="uid://77qjrt34pg2b" path="res://characters/guards/guard_light_sub_viewport.gd" id="4_ierys"]
 [ext_resource type="Script" uid="uid://dwcpryhjkb08v" path="res://state_machines/GuardStates/GuardPauseState.cs" id="5_lrhy8"]
@@ -71,7 +71,7 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrhy8"]
 radius = 50.0
 
-[node name="Guard" type="CharacterBody2D" node_paths=PackedStringArray("raycast2D", "lightPivot") groups=["Enemy"]]
+[node name="Guard" type="CharacterBody2D" node_paths=PackedStringArray("raycast2D", "lightPivot") groups=["Guard"]]
 motion_mode = 1
 script = ExtResource("1_aoykg")
 raycast2D = NodePath("RayCast2D")

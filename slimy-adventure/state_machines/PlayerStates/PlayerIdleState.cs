@@ -6,6 +6,8 @@ public partial class PlayerIdleState : CharacterState
 {
 	[Export]
 	public State playerWalkState { get; set; } = null;
+	[Export]
+	public State playerRunState { get; set; } = null;
 
 	public override void enter()
 	{
@@ -25,7 +27,15 @@ public partial class PlayerIdleState : CharacterState
 		}
 		else
 		{
-			exit(playerWalkState);
+			if ((character as Player).allyAbilityFlags == Player.AllyAbilityFlag.RunAbility && Input.IsActionJustPressed("run"))
+			{
+				exit(playerRunState);
+			}
+			else
+			{
+				exit(playerWalkState);
+			}
+			
 		}
 	}
 }

@@ -2,17 +2,18 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class PlayerWalkState : CharacterState
+public partial class PlayerRunState : CharacterState
 {
 	[Export]
 	public State playerIdleState { get; set; } = null;
 	[Export]
-	public State playerRunState { get; set; } = null;
+	public State playerWalkState { get; set; } = null;
 
 	public override void enter()
 	{
+		GD.Print("Run");
 		base.enter();
-		if (character != null) (character as Character).animation_name = "walk_";
+		if (character != null) (character as Character).animation_name = "run_";
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +23,7 @@ public partial class PlayerWalkState : CharacterState
 
 		if (input != Vector2.Zero)
 		{
-			(character as Character).velocity = input * (character as Character).Speed;
+			(character as Character).velocity = input * (character as Character).Speed * 1.5f;
 
 			if (input.X != 0.0)
 			{
@@ -47,9 +48,9 @@ public partial class PlayerWalkState : CharacterState
 				}
 			}
 			
-			if ((character as Player).allyAbilityFlags == Player.AllyAbilityFlag.RunAbility && Input.IsActionPressed("run"))
+			if (!((character as Player).allyAbilityFlags == Player.AllyAbilityFlag.RunAbility && Input.IsActionPressed("run")))
 			{
-				exit(playerRunState);
+				exit(playerWalkState);
 			}
 		}
 		else

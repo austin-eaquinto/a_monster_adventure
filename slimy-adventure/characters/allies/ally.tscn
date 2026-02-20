@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6y8h5xoghkgt"]
+[gd_scene load_steps=7 format=3 uid="uid://c6y8h5xoghkgt"]
 
 [ext_resource type="Script" uid="uid://dbk7dhv76aeir" path="res://characters/allies/Ally.cs" id="1_ug7p0"]
 [ext_resource type="Texture2D" uid="uid://bb4xq1byxp73a" path="res://art/Nice_Thing.png" id="2_ej3vy"]
 [ext_resource type="Script" uid="uid://dfp13l8miqkmy" path="res://state_machines/AllyStates/AllyFollowState.cs" id="3_ug7p0"]
+[ext_resource type="Script" uid="uid://c0ny0s6vkbion" path="res://state_machines/AllyStates/AllyFleeState.cs" id="4_rebpd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hymoo"]
 animations = [{
@@ -66,5 +67,14 @@ debug_enabled = true
 [node name="AllyFollowState" type="Node" parent="." node_paths=PackedStringArray("navAgent")]
 script = ExtResource("3_ug7p0")
 navAgent = NodePath("../NavigationAgent2D")
-enterOnReady = true
 metadata/_custom_type_script = "uid://dfp13l8miqkmy"
+
+[node name="AllyFleeState" type="Node" parent="." node_paths=PackedStringArray("navAgent", "rayCast2D")]
+script = ExtResource("4_rebpd")
+navAgent = NodePath("../NavigationAgent2D")
+rayCast2D = NodePath("../RayCast2D")
+enterOnReady = true
+metadata/_custom_type_script = "uid://c0ny0s6vkbion"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+modulate = Color(0, 1, 1, 1)

@@ -37,6 +37,7 @@ public partial class GuardPauseState : CharacterState
 
 		if (seesPrisoner) 
 		{
+			EmitSignal(Global.SignalName.AlertGuards, (character as Guard)._targetPrisoner);
 			timer.Stop();
 			exit(chasePlayerState);
 		}

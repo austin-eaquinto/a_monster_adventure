@@ -53,6 +53,7 @@ public partial class GuardPatrolState : CharacterState
 
 		if (seesPrisoner) 
 		{
+			EmitSignal(Global.SignalName.AlertGuards, (character as Guard)._targetPrisoner);
 			exit(chasePlayerState);
 		}
 	}

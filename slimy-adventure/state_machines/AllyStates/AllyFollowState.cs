@@ -22,6 +22,14 @@ public partial class AllyFollowState : CharacterState
 		player.addAlly(character as Ally);
 
 	}
+
+	public override void exit(State succeeding_state)
+	{
+		base.exit(succeeding_state);
+		player.removeAlly(character as Ally);
+		player = null;
+
+	}
 	
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
