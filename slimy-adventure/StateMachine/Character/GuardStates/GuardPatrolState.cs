@@ -5,8 +5,6 @@ using System.Drawing;
 [GlobalClass]
 public partial class GuardPatrolState : CharacterState
 {
-	[Export]
-	public State chasePlayerState { get; set; } = null;
 
 	[Export]
 	public NavigationAgent2D navAgent { get; set;} = null;
@@ -19,9 +17,14 @@ public partial class GuardPatrolState : CharacterState
 
 	protected float pointDistanceThreshold = 10.0f;
 
-	public override void enter()
+	public override bool EvaluateStateCondition()
 	{
-		base.enter();
+		return (character as Guard).state == Guard.GuardStates.Patrol;
+	}
+
+	public override void Enter()
+	{
+		base.Enter();
 		if (character is Guard)
 		{
 			line2D = (character as Guard).line2D;
@@ -54,7 +57,7 @@ public partial class GuardPatrolState : CharacterState
 		if (seesPrisoner) 
 		{
 			EmitSignal(Global.SignalName.AlertGuards, (character as Guard)._targetPrisoner);
-			exit(chasePlayerState);
+			(character as Guard).state = Guard.GuardStates.Chase;
 		}
 	}
 

@@ -8,6 +8,11 @@ public partial class AllyFollowState : CharacterState
 	[Export]
 	public NavigationAgent2D navAgent { get; set;} = null;
 
+	public override bool EvaluateStateCondition()
+    {
+		return (character as Ally).state == Ally.AllyStates.Follow;
+    }
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -15,17 +20,17 @@ public partial class AllyFollowState : CharacterState
 
 	private Player player;
 
-	public override void enter()
+	public override void Enter()
 	{
-		base.enter();
+		base.Enter();
 		player = (character as Ally).player;
 		player.addAlly(character as Ally);
 
 	}
 
-	public override void exit(State succeeding_state)
+	public override void Exit()
 	{
-		base.exit(succeeding_state);
+		base.Exit();
 		player.removeAlly(character as Ally);
 		player = null;
 

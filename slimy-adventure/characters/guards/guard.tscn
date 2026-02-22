@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://b5ukg5fe4xo3p"]
+[gd_scene load_steps=18 format=3 uid="uid://b5ukg5fe4xo3p"]
 
 [ext_resource type="Script" uid="uid://b28vpjv2hyymj" path="res://characters/guards/Guard.cs" id="1_aoykg"]
 [ext_resource type="Texture2D" uid="uid://ctjushx6xm0l4" path="res://art/This_Thing.png" id="2_aoykg"]
 [ext_resource type="Shader" uid="uid://cccvcfeu1amsy" path="res://characters/guards/guardLight.gdshader" id="4_28sy7"]
-[ext_resource type="Script" uid="uid://baofqvuexikko" path="res://state_machines/GuardStates/GuardChaseState.cs" id="4_cruxe"]
+[ext_resource type="Script" uid="uid://baofqvuexikko" path="res://StateMachine/Character/GuardStates/GuardChaseState.cs" id="4_cruxe"]
 [ext_resource type="Script" uid="uid://77qjrt34pg2b" path="res://characters/guards/guard_light_sub_viewport.gd" id="4_ierys"]
-[ext_resource type="Script" uid="uid://dwcpryhjkb08v" path="res://state_machines/GuardStates/GuardPauseState.cs" id="5_lrhy8"]
-[ext_resource type="Script" uid="uid://dxvx4vfrdmnm5" path="res://state_machines/GuardStates/GuardPatrolState.cs" id="6_ay375"]
-[ext_resource type="Script" uid="uid://smvkfwp4l6pt" path="res://state_machines/GuardStates/GuardCatchState.cs" id="6_ioqu5"]
+[ext_resource type="Script" uid="uid://d12yksriwei62" path="res://StateMachine/Character/CharacterStateHandler.cs" id="5_ierys"]
+[ext_resource type="Script" uid="uid://dwcpryhjkb08v" path="res://StateMachine/Character/GuardStates/GuardPauseState.cs" id="5_lrhy8"]
+[ext_resource type="Script" uid="uid://dxvx4vfrdmnm5" path="res://StateMachine/Character/GuardStates/GuardPatrolState.cs" id="6_ay375"]
+[ext_resource type="Script" uid="uid://smvkfwp4l6pt" path="res://StateMachine/Character/GuardStates/GuardCatchState.cs" id="6_ioqu5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cruxe"]
 atlas = ExtResource("2_aoykg")
@@ -107,31 +108,6 @@ texture = SubResource("GradientTexture2D_d16qy")
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_ay375")
 
-[node name="GuardPatrolState" type="Node" parent="." node_paths=PackedStringArray("chasePlayerState", "navAgent")]
-script = ExtResource("6_ay375")
-chasePlayerState = NodePath("../GuardChaseState")
-navAgent = NodePath("../NavigationAgent2D")
-enterOnReady = true
-metadata/_custom_type_script = "uid://dxvx4vfrdmnm5"
-
-[node name="GuardChaseState" type="Node" parent="." node_paths=PackedStringArray("pauseState", "catchState", "captureArea", "navAgent")]
-script = ExtResource("4_cruxe")
-pauseState = NodePath("../GuardPauseState")
-catchState = NodePath("../GuardCatchState")
-captureArea = NodePath("../CaptureArea")
-navAgent = NodePath("../NavigationAgent2D")
-metadata/_custom_type_script = "uid://baofqvuexikko"
-
-[node name="GuardPauseState" type="Node" parent="." node_paths=PackedStringArray("nextState", "chasePlayerState")]
-script = ExtResource("5_lrhy8")
-nextState = NodePath("../GuardPatrolState")
-chasePlayerState = NodePath("../GuardChaseState")
-metadata/_custom_type_script = "uid://dwcpryhjkb08v"
-
-[node name="GuardCatchState" type="Node" parent="."]
-script = ExtResource("6_ioqu5")
-metadata/_custom_type_script = "uid://smvkfwp4l6pt"
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
@@ -141,3 +117,27 @@ debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea"]
 shape = SubResource("CircleShape2D_lrhy8")
+
+[node name="CharacterStateHandler" type="Node" parent="."]
+script = ExtResource("5_ierys")
+Active = true
+metadata/_custom_type_script = "uid://d12yksriwei62"
+
+[node name="GuardPatrolState" type="Node" parent="CharacterStateHandler" node_paths=PackedStringArray("navAgent")]
+script = ExtResource("6_ay375")
+navAgent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://dxvx4vfrdmnm5"
+
+[node name="GuardChaseState" type="Node" parent="CharacterStateHandler" node_paths=PackedStringArray("captureArea", "navAgent")]
+script = ExtResource("4_cruxe")
+captureArea = NodePath("../../CaptureArea")
+navAgent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://baofqvuexikko"
+
+[node name="GuardPauseState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("5_lrhy8")
+metadata/_custom_type_script = "uid://dwcpryhjkb08v"
+
+[node name="GuardCatchState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("6_ioqu5")
+metadata/_custom_type_script = "uid://smvkfwp4l6pt"

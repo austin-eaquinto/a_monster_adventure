@@ -1,48 +1,43 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 [GlobalClass]
-public partial class State : Node
+public partial class State : StateCondition
 {
-	[Export]
-	public bool enterOnReady { get; set; } = false;
 	
 	public Node enteredParent;
+	public bool active = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (enterOnReady)
+		SetProcess(false);
+		StateHandler stateHandler = SearchForStateHandler();
+		if (stateHandler != null)
 		{
-			enter();
-		} 
-		else 
-		{
-			SetProcess(false);
+			stateHandler.Ready += HandlerReady;
 		}
 	}
-	
-	public virtual void enter()
+
+	public virtual void HandlerReady()
 	{
+		return;
+	}
+	
+	public virtual void Enter()
+	{
+		GD.Print("Enter: ", Name);
+		active = true;
 		enteredParent = GetParent();
-		// GD.Print(enteredParent);
 		SetProcess(true);
 	}
 
-	public virtual void branch(State parallel_state)
+	public virtual void Exit()
 	{
-		parallel_state.enter();
-	}
-
-	public virtual void exit(State succeeding_state)
-	{
+		active = false;
 		enteredParent = null;
 		SetProcess(false);
-
-		if (succeeding_state != null)
-		{
-			succeeding_state.enter();
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

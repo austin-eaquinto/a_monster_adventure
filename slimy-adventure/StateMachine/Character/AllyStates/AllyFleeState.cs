@@ -14,6 +14,11 @@ public partial class AllyFleeState : CharacterState
 	public RayCast2D rayCast2D {get; set;} = null;
 	private Line2D line = null;
 
+	public override bool EvaluateStateCondition()
+    {
+		return (character as Ally).state == Ally.AllyStates.Flee;
+    }
+
 	public override void _Ready()
 	{
 
@@ -24,9 +29,9 @@ public partial class AllyFleeState : CharacterState
 		base._Ready();
 	}
 
-	public override void enter()
+	public override void Enter()
 	{
-		base.enter();
+		base.Enter();
 		findFleePath();
 	}
 	

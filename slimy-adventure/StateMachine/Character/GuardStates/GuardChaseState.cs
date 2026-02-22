@@ -5,11 +5,6 @@ using System.Drawing;
 [GlobalClass]
 public partial class GuardChaseState : CharacterState
 {
-	[Export]
-	public State pauseState { get; set; } = null;
-	[Export]
-	public State catchState { get; set; } = null;
-
 	
 	[Export]
 	public Area2D captureArea { get; set;} = null;
@@ -34,26 +29,30 @@ public partial class GuardChaseState : CharacterState
 		captureArea.BodyEntered += BodyEnters;
 	}
 
+	public override bool EvaluateStateCondition()
+    {
+		return (character as Guard).state == Guard.GuardStates.Chase;
+    }
+
 	protected void BodyEnters(Node2D body)
 	{
-		if (!body.IsInGroup("Player"))
+		if (!active)
+		{
+			return;
+		}
+		if (!body.IsInGroup("Prisoner"))
 		{
 			return;
 		}
 		else
 		{
-			exit(catchState);
+			(character as Guard).state = Guard.GuardStates.Catch;
 		}
 	}
 
 	protected void lostPlayer()
 	{
-		exit(pauseState);
-	}
-
-	public override void enter()
-	{
-		base.enter();
+		(character as Guard).state = Guard.GuardStates.Pause;
 	}
 	
 

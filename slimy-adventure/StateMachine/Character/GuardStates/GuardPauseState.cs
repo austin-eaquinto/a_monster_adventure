@@ -5,10 +5,11 @@ using System.Drawing;
 [GlobalClass]
 public partial class GuardPauseState : CharacterState
 {
-	[Export]
-	public State nextState { get; set; } = null;
-	[Export]
-	public State chasePlayerState { get; set; } = null;
+
+	public override bool EvaluateStateCondition()
+    {
+		return (character as Guard).state == Guard.GuardStates.Pause;
+    }
 
 	[Export]
 	public float pauseTimer { get; set; } = 2.0f;
@@ -27,7 +28,7 @@ public partial class GuardPauseState : CharacterState
 
 	protected void unpause()
 	{
-		exit(nextState);
+		(character as Guard).state = Guard.GuardStates.Patrol;
 	}
 
 	protected virtual void SearchForPlayer()
@@ -39,13 +40,13 @@ public partial class GuardPauseState : CharacterState
 		{
 			EmitSignal(Global.SignalName.AlertGuards, (character as Guard)._targetPrisoner);
 			timer.Stop();
-			exit(chasePlayerState);
+			(character as Guard).state = Guard.GuardStates.Chase;
 		}
 	}
 
-	public override void enter()
+	public override void Enter()
 	{
-		base.enter();
+		base.Enter();
 		timer.Start();
 		(character as Character).velocity = Vector2.Zero;
 	}

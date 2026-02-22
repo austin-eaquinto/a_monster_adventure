@@ -46,7 +46,7 @@ tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAA
 tile_set = SubResource("TileSet_385bc")
 
 [node name="Player" parent="." instance=ExtResource("2_1p8ew")]
-position = Vector2(772, -785)
+position = Vector2(-23, -16)
 
 [node name="Guard" parent="." node_paths=PackedStringArray("line2D") instance=ExtResource("2_tulln")]
 position = Vector2(-3, -257)
@@ -77,8 +77,9 @@ width = 0.0
 metadata/_edit_lock_ = true
 
 [node name="Ally" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_385bc")]
-position = Vector2(1269, 48)
+position = Vector2(-253, 4)
 player = NodePath("../Player")
+state = 8
 
 [node name="Camera2D" type="Camera2D" parent="Ally"]
 position_smoothing_enabled = true

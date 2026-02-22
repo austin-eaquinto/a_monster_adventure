@@ -5,7 +5,13 @@ using System.Drawing;
 [GlobalClass]
 public partial class GuardCatchState : CharacterState
 {
-	public override void enter()
+
+	public override bool EvaluateStateCondition()
+    {
+		return (character as Guard).state == Guard.GuardStates.Catch;
+    }
+
+	public override void Enter()
 	{
 		GD.Print("Caught");
 		GetTree().Quit();

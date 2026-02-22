@@ -1,13 +1,14 @@
-[gd_scene load_steps=119 format=3 uid="uid://mgnrp1qhc7em"]
+[gd_scene load_steps=120 format=3 uid="uid://mgnrp1qhc7em"]
 
 [ext_resource type="Script" uid="uid://bi2g7vuqu0rfv" path="res://characters/Player.cs" id="1_j31ep"]
 [ext_resource type="Texture2D" uid="uid://bb2lxe0t3f54d" path="res://art/Slime1_Hurt_full.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c5fwikaraumsh" path="res://art/Slime1_Idle_full.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://jl6q06tnv1g4" path="res://art/Slime1_Run_full.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dnt8clc48qsdv" path="res://art/Slime1_Walk_full.png" id="5_dw050"]
-[ext_resource type="Script" uid="uid://bhwk1nfu4aoxf" path="res://state_machines/PlayerStates/PlayerIdleState.cs" id="6_1jxqw"]
-[ext_resource type="Script" uid="uid://3jvrh46wl7l7" path="res://state_machines/PlayerStates/PlayerWalkState.cs" id="7_dw050"]
-[ext_resource type="Script" uid="uid://c4kv5jmf60085" path="res://state_machines/PlayerStates/PlayerRunState.cs" id="8_6t23p"]
+[ext_resource type="Script" uid="uid://bhwk1nfu4aoxf" path="res://StateMachine/Character/Player/PlayerIdleState.cs" id="6_1jxqw"]
+[ext_resource type="Script" uid="uid://d12yksriwei62" path="res://StateMachine/Character/CharacterStateHandler.cs" id="6_n8jd0"]
+[ext_resource type="Script" uid="uid://3jvrh46wl7l7" path="res://StateMachine/Character/Player/PlayerWalkState.cs" id="7_dw050"]
+[ext_resource type="Script" uid="uid://c4kv5jmf60085" path="res://StateMachine/Character/Player/PlayerRunState.cs" id="8_6t23p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("2_sweqy")
@@ -867,25 +868,23 @@ position = Vector2(0, 7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
-[node name="PlayerIdleState" type="Node" parent="." node_paths=PackedStringArray("playerWalkState", "playerRunState")]
-script = ExtResource("6_1jxqw")
-playerWalkState = NodePath("../PlayerWalkState")
-playerRunState = NodePath("../PlayerRunAbility")
-enterOnReady = true
-metadata/_custom_type_script = "uid://bhwk1nfu4aoxf"
-
-[node name="PlayerWalkState" type="Node" parent="." node_paths=PackedStringArray("playerIdleState", "playerRunState")]
-script = ExtResource("7_dw050")
-playerIdleState = NodePath("../PlayerIdleState")
-playerRunState = NodePath("../PlayerRunAbility")
-metadata/_custom_type_script = "uid://3jvrh46wl7l7"
-
-[node name="PlayerRunAbility" type="Node" parent="." node_paths=PackedStringArray("playerIdleState", "playerWalkState")]
-script = ExtResource("8_6t23p")
-playerIdleState = NodePath("../PlayerIdleState")
-playerWalkState = NodePath("../PlayerWalkState")
-metadata/_custom_type_script = "uid://c4kv5jmf60085"
-
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 position_smoothing_enabled = true
+
+[node name="CharacterStateHandler" type="Node" parent="."]
+script = ExtResource("6_n8jd0")
+Active = true
+metadata/_custom_type_script = "uid://d12yksriwei62"
+
+[node name="PlayerRunState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("8_6t23p")
+metadata/_custom_type_script = "uid://c4kv5jmf60085"
+
+[node name="PlayerWalkState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("7_dw050")
+metadata/_custom_type_script = "uid://3jvrh46wl7l7"
+
+[node name="PlayerIdleState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("6_1jxqw")
+metadata/_custom_type_script = "uid://bhwk1nfu4aoxf"

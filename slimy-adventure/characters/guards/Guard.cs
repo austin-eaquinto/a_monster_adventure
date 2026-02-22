@@ -5,21 +5,17 @@ public partial class Guard : Character
 {
 	[Export]
 	public Line2D line2D { get; set; } = null;
-
 	[Export]
 	public RayCast2D raycast2D { get; set; } = null;
 	
 	[Export]
 	public Node2D lightPivot { get; set; } = null;
-
 	[Export]
 	public float visionRadius { get; set; } = 600.0f;
-	
 	[Export]
 	public float visionArc { get; set; } = 0.982f;
-	
-	Vector2 lookDirection = Vector2.Zero;
 
+	Vector2 lookDirection = Vector2.Zero;
 	[Export]
 	float lookSpeed { get; set; } = 5.0f;
 
@@ -93,5 +89,14 @@ public partial class Guard : Character
 		}
 	}
 	
-
+	public enum GuardStates
+	{
+		Patrol = 1 << 1,
+		Chase = 1 << 2,
+		Pause = 1 << 3,
+		Catch = 1 << 4,
+	}
+	
+	[Export]
+	public GuardStates state {get; set;} = GuardStates.Patrol;
 }
