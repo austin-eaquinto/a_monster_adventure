@@ -79,7 +79,6 @@ metadata/_edit_lock_ = true
 [node name="Ally" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_385bc")]
 position = Vector2(-253, 4)
 player = NodePath("../Player")
-state = 8
 
 [node name="Camera2D" type="Camera2D" parent="Ally"]
 position_smoothing_enabled = true

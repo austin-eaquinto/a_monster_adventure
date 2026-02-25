@@ -13,10 +13,10 @@ public partial class StateHandler : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// if (Active) {
-		// 	ExploreStateTree(this);
-		// 	SetProcess(false);
-		// }
+		if (Active) {
+			DoStateMachine();
+			SetProcess(false);
+		}
 	}
 
 	private Array<State> activeStates = [];
@@ -83,17 +83,17 @@ public partial class StateHandler : Node
 		statesToDeactivate = activeStates.Duplicate();
 		activeStates.Clear();
 
-        ExploreStateTree(this);
+		ExploreStateTree(this);
 
 		foreach (State stateToDeactivate in statesToDeactivate)
 			if (stateToDeactivate.active) 
 				stateToDeactivate.Exit();
 	}
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		if (Active) DoStateMachine();
-    }
+	}
 
 	public StateHandlerLink CreateLink()
 	{

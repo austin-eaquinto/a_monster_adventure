@@ -22,6 +22,10 @@ public partial class AllyIdleState : CharacterState
 
 	protected void BodyEnters(Node2D body)
 	{
+		if (!active)
+		{
+			return;
+		}
 		if (!(body == player))
 		{
 			return;

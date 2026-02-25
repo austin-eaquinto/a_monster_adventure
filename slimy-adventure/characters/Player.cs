@@ -7,10 +7,10 @@ public partial class Player : Character
 	[Flags]
 	public enum AllyAbilityFlag
 	{
-	    RunAbility = 1 << 1,
-    	Ability2 = 1 << 2,
-    	Ability3 = 1 << 3,
-    	Ability4 = 1 << 4,
+		RunAbility = 1 << 1,
+		Ability2 = 1 << 2,
+		Ability3 = 1 << 3,
+		Ability4 = 1 << 4,
 	}
 
 	[Export]

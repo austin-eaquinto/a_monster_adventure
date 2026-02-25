@@ -8,6 +8,12 @@ public partial class Global : Node
 	[Signal]
 	public delegate void AlertGuardsEventHandler(Vector2 guardPosition, Character spottedPrisoner);
 	
+	// public void TransitionScene(, bool game){
+		
+	// 	GetTree().ChangeSceneToFile("res://screens/loading/loading_screen.tscn");
+	// }
+	
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

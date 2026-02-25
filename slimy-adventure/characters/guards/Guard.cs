@@ -28,6 +28,20 @@ public partial class Guard : Character
 	}
 
 
+	public bool GuardSeesAnyPrisoner()
+	{
+
+		foreach (Character prisoner in GetTree().GetNodesInGroup("Prisoner"))
+		{
+			if (GuardSeesPrisoner(prisoner))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 	public Character _targetPrisoner;
 	public bool GuardSeesNewTargetPrisoner()
 	{
