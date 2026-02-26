@@ -25,10 +25,10 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 	{
 		base.Enter();
 		rayCast2D.ClearExceptions();
-		rayCast2D.AddException(character);
+		rayCast2D.AddException(player);
 
-		rayCast2D.GlobalPosition = character.GlobalPosition;
-		rayCast2D.TargetPosition = character.GetLocalMousePosition().Normalized() * webLength;
+		rayCast2D.GlobalPosition = player.GlobalPosition;
+		rayCast2D.TargetPosition = player.GetLocalMousePosition().Normalized() * webLength;
 		rayCast2D.ForceRaycastUpdate();
 
 		if (rayCast2D.IsColliding()) {
@@ -36,7 +36,7 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 			persists = true;
 		}
 
-		if (character != null) (character as Character).animation_name = "walk_";
+		if (player != null) player.animation_name = "walk_";
 	}
 
 	public override bool EvaluateStateCondition()
@@ -47,9 +47,9 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		Vector2 localWebDestination = webDestination - character.GlobalPosition;
+		Vector2 localWebDestination = webDestination - player.GlobalPosition;
 
-		(character as Character).velocity = localWebDestination.Normalized() * pullSpeed;
+		player.velocity = localWebDestination.Normalized() * pullSpeed;
 		if (localWebDestination.Length() < distanceThreshold) persists = false;
 	}
 

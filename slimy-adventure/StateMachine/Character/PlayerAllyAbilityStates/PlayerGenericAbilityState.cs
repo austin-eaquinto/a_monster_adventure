@@ -26,12 +26,16 @@ public partial class PlayerGenericAbilityState : CharacterState
 		timedOut = true;
 	}
 
+	public Player player;
+
 	public override void Enter()
 	{
 		base.Enter();
+		player = (character as Ally).getPlayer();
+
 		timedOut = false;
 		cooldownTimer.Start();
-		if (character != null) (character as Character).animation_name = "walk_";
+		if (player != null) player.animation_name = "walk_";
 	}
 
 	public override bool EvaluateStateCondition()

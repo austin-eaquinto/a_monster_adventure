@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://mgnrp1qhc7em"]
+[gd_scene load_steps=120 format=3 uid="uid://mgnrp1qhc7em"]
 
 [ext_resource type="Script" uid="uid://bi2g7vuqu0rfv" path="res://characters/Player.cs" id="1_j31ep"]
 [ext_resource type="Texture2D" uid="uid://bb2lxe0t3f54d" path="res://art/Slime1_Hurt_full.png" id="2_sweqy"]
@@ -8,8 +8,7 @@
 [ext_resource type="Script" uid="uid://bhwk1nfu4aoxf" path="res://StateMachine/Character/Player/PlayerIdleState.cs" id="6_1jxqw"]
 [ext_resource type="Script" uid="uid://d12yksriwei62" path="res://StateMachine/Character/CharacterStateHandler.cs" id="6_n8jd0"]
 [ext_resource type="Script" uid="uid://3jvrh46wl7l7" path="res://StateMachine/Character/Player/PlayerWalkState.cs" id="7_dw050"]
-[ext_resource type="PackedScene" uid="uid://db0hvgb2v5t6p" path="res://player_web_ability_state.tscn" id="7_q605b"]
-[ext_resource type="Script" uid="uid://c4kv5jmf60085" path="res://StateMachine/Character/Player/PlayerRunState.cs" id="8_6t23p"]
+[ext_resource type="Script" uid="uid://b0v081pqnggq" path="res://StateMachine/StateCondition.cs" id="7_q605b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("2_sweqy")
@@ -854,9 +853,10 @@ animations = [{
 radius = 7.0
 height = 20.000002
 
-[node name="Player" type="CharacterBody2D" groups=["Prisoner"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("abilitiesStateBranch") groups=["Prisoner"]]
 motion_mode = 1
 script = ExtResource("1_j31ep")
+abilitiesStateBranch = NodePath("CharacterStateHandler/AbilityBranch")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -870,7 +870,6 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 position_smoothing_enabled = true
 
 [node name="CharacterStateHandler" type="Node" parent="."]
@@ -878,16 +877,14 @@ script = ExtResource("6_n8jd0")
 Active = true
 metadata/_custom_type_script = "uid://d12yksriwei62"
 
-[node name="PlayerWebAbilityState" parent="CharacterStateHandler" instance=ExtResource("7_q605b")]
-cooldownTime = 10.0
+[node name="AbilityBranch" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("7_q605b")
+exclusivity = 0
+metadata/_custom_type_script = "uid://b0v081pqnggq"
 
 [node name="PlayerWalkState" type="Node" parent="CharacterStateHandler"]
 script = ExtResource("7_dw050")
 metadata/_custom_type_script = "uid://3jvrh46wl7l7"
-
-[node name="PlayerRunState" type="Node" parent="CharacterStateHandler"]
-script = ExtResource("8_6t23p")
-metadata/_custom_type_script = "uid://c4kv5jmf60085"
 
 [node name="PlayerIdleState" type="Node" parent="CharacterStateHandler"]
 script = ExtResource("6_1jxqw")

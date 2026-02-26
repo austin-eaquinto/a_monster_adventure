@@ -27,6 +27,11 @@ public partial class CharacterState : State
 		}
     }
 
+	public override bool EvaluateStateCondition()
+	{
+		return true;
+	}
+
     public override void Enter()
     {
         base.Enter();
