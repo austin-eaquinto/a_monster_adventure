@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://mgnrp1qhc7em"]
+[gd_scene load_steps=122 format=3 uid="uid://mgnrp1qhc7em"]
 
 [ext_resource type="Script" uid="uid://bi2g7vuqu0rfv" path="res://characters/Player.cs" id="1_j31ep"]
 [ext_resource type="Texture2D" uid="uid://bb2lxe0t3f54d" path="res://art/Slime1_Hurt_full.png" id="2_sweqy"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://3jvrh46wl7l7" path="res://StateMachine/Character/Player/PlayerWalkState.cs" id="7_dw050"]
 [ext_resource type="PackedScene" uid="uid://db0hvgb2v5t6p" path="res://player_web_ability_state.tscn" id="7_q605b"]
 [ext_resource type="Script" uid="uid://c4kv5jmf60085" path="res://StateMachine/Character/Player/PlayerRunState.cs" id="8_6t23p"]
+[ext_resource type="Script" uid="uid://cpqtuw31cp3li" path="res://StateMachine/Character/Player/PlayerGhostAbilityState.cs" id="11_eho78"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("2_sweqy")
@@ -877,6 +878,11 @@ position_smoothing_enabled = true
 script = ExtResource("6_n8jd0")
 Active = true
 metadata/_custom_type_script = "uid://d12yksriwei62"
+
+[node name="PlayerGhostAbilityState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("11_eho78")
+exclusivity = 0
+metadata/_custom_type_script = "uid://cpqtuw31cp3li"
 
 [node name="PlayerWebAbilityState" parent="CharacterStateHandler" instance=ExtResource("7_q605b")]
 cooldownTime = 10.0
