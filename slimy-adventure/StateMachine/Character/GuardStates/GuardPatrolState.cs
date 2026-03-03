@@ -56,7 +56,7 @@ public partial class GuardPatrolState : CharacterState
 
 		if (seesPrisoner) 
 		{
-			EmitSignal(Global.SignalName.AlertGuards, (character as Guard)._targetPrisoner);
+			Global.instance.EmitSignal(Global.SignalName.AlertGuards, (character as Guard)._targetPrisoner);
 			(character as Guard).state = Guard.GuardStates.Chase;
 		}
 	}
