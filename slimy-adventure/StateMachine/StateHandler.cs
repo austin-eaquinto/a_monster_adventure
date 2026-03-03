@@ -13,8 +13,7 @@ public partial class StateHandler : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (Active) {
-			DoStateMachine();
+		if (!Active) {
 			SetProcess(false);
 		}
 	}
@@ -33,7 +32,12 @@ public partial class StateHandler : Node
 				childStateCondition = child as StateCondition;
 			}
 			else if (child is StateHandlerLink){
-				(child as StateHandlerLink).reference.DoStateMachine();
+				bool continueExploration = ExploreStateTree((child as StateHandlerLink).reference);
+
+				if (!continueExploration) // Excluded rest of tree
+				{
+					return false;
+				}
 
 				continue;
 			}
@@ -41,9 +45,9 @@ public partial class StateHandler : Node
 			{
 				continue;
 			}
-
 			if (childStateCondition.EvaluateStateCondition())
 			{
+				
 				if (!(childStateCondition is State))
 				{
 					bool continueExploration = ExploreStateTree(childStateCondition);

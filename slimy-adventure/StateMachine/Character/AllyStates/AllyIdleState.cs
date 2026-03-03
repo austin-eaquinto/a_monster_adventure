@@ -10,9 +10,9 @@ public partial class AllyIdleState : CharacterState
 	public Area2D joinArea { get; set;} = null;
 
 	public override bool EvaluateStateCondition()
-    {
+	{
 		return (character as Ally).state == Ally.AllyStates.Idle;
-    }
+	}
 
 	public override void _Ready()
 	{

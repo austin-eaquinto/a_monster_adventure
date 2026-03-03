@@ -14,7 +14,6 @@ public partial class PlayerRunState : CharacterState
 
 	public override bool EvaluateStateCondition()
 	{
-		if (!((character as Player).allyAbilityFlags == Player.AllyAbilityFlag.RunAbility)) return false;
 		Vector2 input = Input.GetVector("move_left","move_right","move_up","move_down");
 		return input != Vector2.Zero && Input.IsActionPressed("run");
 	}

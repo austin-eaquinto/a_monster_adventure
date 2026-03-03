@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=4 uid="uid://dkwpxg6uhqrid"]
+[gd_scene load_steps=12 format=4 uid="uid://dkwpxg6uhqrid"]
 
 [ext_resource type="Texture2D" uid="uid://b6bqro0uqen65" path="res://art/Yes.png" id="1_klvbo"]
 [ext_resource type="Texture2D" uid="uid://cqgnxeek3v224" path="res://icon.svg" id="1_tulln"]
 [ext_resource type="PackedScene" uid="uid://mgnrp1qhc7em" path="res://characters/player.tscn" id="2_1p8ew"]
 [ext_resource type="PackedScene" uid="uid://b5ukg5fe4xo3p" path="res://characters/guards/guard.tscn" id="2_tulln"]
 [ext_resource type="PackedScene" uid="uid://c6y8h5xoghkgt" path="res://characters/allies/ally.tscn" id="5_385bc"]
+[ext_resource type="Script" uid="uid://d12yksriwei62" path="res://StateMachine/Character/CharacterStateHandler.cs" id="6_fli4g"]
+[ext_resource type="PackedScene" uid="uid://db0hvgb2v5t6p" path="res://player_web_ability_state.tscn" id="7_klvbo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_klvbo"]
 vertices = PackedVector2Array(2536, 1128, 2651.039, 1213, -881.2578, 1129.9219, -744, 1128, 2557.789, -785.4375, 2536, -744, -894.71094, -826.5078, -744, -744, 1688, 536, -488, 536, 488, 488, 536, 488, -488, 488, 488, -24, 488, -488, 536, -488, 2152, -152, 2152, -296, 2328, -536, 2280, 536, 1496, -360, 1496, -104, 1368, -104, 1320, -216, 1320, -488, 1128, 360, 1240, 152, 1240, 488, 1064, 488, 1128, 152, 2328, 920, 2280, 872, 280, 24, 280, 280, 232, 232, 232, -232, -280, 280, -232, 232, -280, -40, -232, 24, 2024, 920, 2072, 872, 2024, 792, 2072, 744, 1768, 744, 1816, 792, 1768, 872, 1816, 920, 1512, 920, 1560, 872, 1512, 792, 1560, 744, 1256, 744, 1304, 792, 1256, 872, 1304, 920, 1000, 920, 1048, 872, 1000, 792, 1048, 744, 744, 744, 792, 792, 744, 872, 792, 920, 488, 920, 536, 872, 488, 792, 536, 744, 232, 744, 280, 792, 232, 872, 280, 920, -24, 920, 24, 872, -24, 792, 24, 744, -280, 744, -232, 792, -280, 872, -232, 920, -536, 920, -488, 872, -536, -536, -488, -40, 2152, 296, 2024, 536, 2024, 408, 1816, 296, 1832, 344, 1512, 424, 1512, 152, 1688, 344, 1000, -24, 1000, -232, 1048, -216, 1368, 104, 1768, -280, 1768, -488, 2008, -296, 2008, -152, 1832, 408, 920, 152, 920, 280, 856, 280, 1064, 360, 1384, 488, 1384, 424, -232, -24, 24, -24, 24, 24, -232, -232, -280, -88, 1560, -488, 1560, -360, 984, -280, 1048, -280, 936, -232, 936, -296, 744, -296, 744, -488, 984, -488, 744, 488, 744, -24, 1704, 104, 1704, -280, 1816, 24, -488, -488, -488, -88, -280, -280, 280, -280, 280, -24, 488, 24, 2152, 24, 856, 488)
@@ -76,9 +78,19 @@ closed = true
 width = 0.0
 metadata/_edit_lock_ = true
 
-[node name="Ally" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_385bc")]
+[node name="Ally" parent="." node_paths=PackedStringArray("player", "abilityStateBranch") instance=ExtResource("5_385bc")]
 position = Vector2(-253, 4)
 player = NodePath("../Player")
+abilityStateBranch = NodePath("CharacterStateHandler2")
 
 [node name="Camera2D" type="Camera2D" parent="Ally"]
+enabled = false
 position_smoothing_enabled = true
+
+[node name="CharacterStateHandler2" type="Node" parent="Ally"]
+script = ExtResource("6_fli4g")
+metadata/_custom_type_script = "uid://d12yksriwei62"
+
+[node name="PlayerWebAbilityState" parent="Ally/CharacterStateHandler2" instance=ExtResource("7_klvbo")]
+cooldownTime = 10.0
+exclusivity = 2

@@ -8,18 +8,22 @@ public partial class Ally : Character
 	[Export]
 	public Player player {get; set;} = null;
 	[Export]
-	public RayCast2D raycast2D {get; set;} = null;
-	
-	public enum AllyAbilityType
+	public StateHandler abilityStateBranch {get; set;} = null;
+	public StateHandlerLink abilityStateBranchLink = null;
+
+	public Player getPlayer() {return player;}
+
+	public StateHandlerLink createNewStateBranchLink()
 	{
-		RunAbility = 1 << 1,
-		Ability2 = 1 << 2,
-		Ability3 = 1 << 3,
-		Ability4 = 1 << 4,
+		if (abilityStateBranch == null) 
+			return null;
+		if (abilityStateBranchLink != null)
+			abilityStateBranchLink.QueueFree();
+		
+		abilityStateBranchLink = new StateHandlerLink();
+		abilityStateBranchLink.reference = abilityStateBranch;
+		return abilityStateBranchLink;
 	}
-	
-	[Export]
-	public AllyAbilityType allyAbilityType {get; set;} = AllyAbilityType.RunAbility;
 	
 	public enum AllyStates
 	{
