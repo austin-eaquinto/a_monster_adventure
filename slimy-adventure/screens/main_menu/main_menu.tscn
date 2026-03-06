@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bb8ojrh5dn87g" path="res://screens/main_menu/MainMenu.cs" id="1_5k2jx"]
 
-[node name="main_manu" type="Control"]
+[node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
