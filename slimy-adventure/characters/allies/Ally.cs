@@ -4,14 +4,13 @@ using System;
 [GlobalClass]
 public partial class Ally : Character
 {
-
 	[Export]
-	public Player player {get; set;} = null;
+	public int id {get; set;} = 0;
 	[Export]
 	public StateHandler abilityStateBranch {get; set;} = null;
 	public StateHandlerLink abilityStateBranchLink = null;
 
-	public Player getPlayer() {return player;}
+	public Player getPlayer() {return Global.instance.player;}
 
 	public StateHandlerLink createNewStateBranchLink()
 	{
@@ -34,4 +33,8 @@ public partial class Ally : Character
 	
 	[Export]
 	public AllyStates state {get; set;} = AllyStates.Idle;
+
+	[Signal]
+	public delegate void CapturedEventHandler();
+
 }

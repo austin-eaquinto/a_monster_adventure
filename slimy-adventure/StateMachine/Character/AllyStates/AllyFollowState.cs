@@ -23,9 +23,11 @@ public partial class AllyFollowState : CharacterState
 	public override void Enter()
 	{
 		base.Enter();
-		player = (character as Ally).player;
+		player = (character as Ally).getPlayer();
 		player.addAlly(character as Ally);
-
+		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.instance.allyDict[(character as Ally).id]["isFollowing"] = true;
+		Global.instance.allyDict[(character as Ally).id]["isImprisoned"] = false;
 	}
 
 	public override void Exit()
@@ -33,7 +35,20 @@ public partial class AllyFollowState : CharacterState
 		base.Exit();
 		player.removeAlly(character as Ally);
 		player = null;
+		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.instance.allyDict[(character as Ally).id]["isFollowing"] = false;
+		Global.instance.allyDict[(character as Ally).id]["sceneName"] = Global.instance.currentSceneName;
+		Global.instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
 
+	}
+
+	public void PrepareFlee(Vector2 alertPosition, Character spottedPrisoner)
+	{
+		GD.Print("Ally flees");
+		if (spottedPrisoner == (character as Ally) || spottedPrisoner == player)
+		{
+			(character as Ally).state = Ally.AllyStates.Flee;
+		}
 	}
 	
 

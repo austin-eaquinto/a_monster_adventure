@@ -7,6 +7,9 @@ public partial class Guard : Character
 	public Line2D line2D { get; set; } = null;
 	[Export]
 	public RayCast2D raycast2D { get; set; } = null;
+
+	[Export]
+	public float alertRadius {get; set;} = 1200.0f;
 	
 	[Export]
 	public Node2D lightPivot { get; set; } = null;
@@ -43,6 +46,7 @@ public partial class Guard : Character
 	}
 
 	public Character _targetPrisoner;
+	public Vector2 investigatePos = Vector2.Zero;
 	public bool GuardSeesNewTargetPrisoner()
 	{
 
@@ -51,6 +55,7 @@ public partial class Guard : Character
 
 		foreach (Character prisoner in GetTree().GetNodesInGroup("Prisoner"))
 		{
+			GD.Print(prisoner);
 			if (GuardSeesPrisoner(prisoner))
 			{
 				float prisonerDistance = (GlobalPosition - prisoner.GlobalPosition).Length();
@@ -77,6 +82,11 @@ public partial class Guard : Character
 	public bool GuardSeesPrisoner(Character prisoner)
 	{
 		if (prisoner == null)
+		{
+			return false;
+		}
+
+		if (!prisoner.detectable)
 		{
 			return false;
 		}
@@ -109,6 +119,7 @@ public partial class Guard : Character
 		Chase = 1 << 2,
 		Pause = 1 << 3,
 		Catch = 1 << 4,
+		Investigate = 1 << 5,
 	}
 	
 	[Export]
