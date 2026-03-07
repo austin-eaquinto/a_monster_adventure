@@ -23,6 +23,7 @@ public partial class GuardInvestigateState : CharacterState
 		base.Enter();
 		navAgent.TargetPosition = (character as Guard).investigatePos;
 		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()

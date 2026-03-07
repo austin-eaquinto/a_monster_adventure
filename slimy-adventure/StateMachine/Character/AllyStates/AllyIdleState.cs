@@ -46,6 +46,7 @@ public partial class AllyIdleState : CharacterState
 		(character as Character).velocity = Vector2.Zero;
 		player = (character as Ally).getPlayer();
 		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		if (character != null) (character as Character).animation_name = "idle_";
 
 	}
 

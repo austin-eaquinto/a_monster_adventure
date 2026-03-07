@@ -43,6 +43,7 @@ public partial class AllyFleeState : CharacterState
 		base.Enter();
 		idleTimer.Start();
 		findFleePath();
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()

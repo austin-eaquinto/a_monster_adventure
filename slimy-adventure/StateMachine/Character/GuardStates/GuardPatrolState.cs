@@ -33,6 +33,7 @@ public partial class GuardPatrolState : CharacterState
 				GetRandomPoint();//GetClosestPoint();
 		}
 		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()
@@ -62,6 +63,7 @@ public partial class GuardPatrolState : CharacterState
 			MoveToPoint(delta);
 
 			AttemptGetNextPoint();
+			if (character != null) (character as Character).animation_name = "walk_";
 		}
 		
 	}

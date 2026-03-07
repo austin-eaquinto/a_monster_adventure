@@ -71,10 +71,12 @@ public partial class AllyFollowState : CharacterState
 		if (navAgent.GetPathLength() < 100.0f) 
 		{
 			(character as Character).velocity = Vector2.Zero;
+			if (character != null) (character as Character).animation_name = "idle_";
 			return;
 		}
 		
 		(character as Character).velocity = direction * (character as Character).Speed;
+		if (character != null) (character as Character).animation_name = "walk_";
 
 
 		if (Math.Abs(direction.X) >= 0.5)

@@ -29,6 +29,13 @@ public partial class GuardChaseState : CharacterState
 		captureArea.BodyEntered += BodyEnters;
 	}
 
+    public override void Enter()
+    {
+        base.Enter();
+		if (character != null) (character as Character).animation_name = "walk_";
+    }
+
+
 	public override bool EvaluateStateCondition()
     {
 		return (character as Guard).state == Guard.GuardStates.Chase;
