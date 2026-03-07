@@ -27,6 +27,7 @@ public partial class GuardCatchState : CharacterState
 			int allyId = ally.id;
 
 			Global.instance.allyDict[allyId]["isImprisoned"] = true;
+			Global.instance.allyDict[allyId]["isFollowing"] = false;
 			ally.EmitSignal("Captured");
 			ally.RemoveFromGroup("Prisoner");
 			ally.QueueFree();
