@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://db0hvgb2v5t6p"]
+[gd_scene load_steps=2 format=3 uid="uid://berhyknsp5xb0"]
 
 [ext_resource type="Script" uid="uid://dhinkl5pwt48m" path="res://StateMachine/Character/Player/PlayerWebAbilityState.cs" id="1_ntaa6"]
 
