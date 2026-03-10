@@ -10,7 +10,7 @@ public partial class Ally : Character
 	public StateHandler abilityStateBranch {get; set;} = null;
 	public StateHandlerLink abilityStateBranchLink = null;
 
-	public Player getPlayer() {return Global.instance.player;}
+	public Player getPlayer() {return Global.Instance.player;}
 
 	public StateHandlerLink createNewStateBranchLink()
 	{

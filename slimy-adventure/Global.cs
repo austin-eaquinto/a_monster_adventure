@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public partial class Global : Node
 {
 	
-	public static Global instance { get; private set; }
+	public static Global Instance { get; private set; }
 	public Player player {get; set;}
 
 	[Signal]
@@ -64,7 +64,7 @@ public partial class Global : Node
 
 	public async Task TransitionWorldScene(string sceneName,int playerInstantiatorId){
 		
-		TransitionScene(sceneName);
+		await TransitionScene(sceneName);
 		await ToSignal(GetTree(), SceneTree.SignalName.SceneChanged);
 		PrintAllNodes();
 		DoPlayerInstantiation(playerInstantiatorId);
@@ -102,7 +102,7 @@ public partial class Global : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		instance = this;
+		Instance = this;
 		DoPlayerInstantiation(0);
 	}
 

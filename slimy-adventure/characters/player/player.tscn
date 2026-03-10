@@ -851,9 +851,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jxqw"]
 radius = 7.0
-height = 20.000002
+height = 32.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("abilitiesStateBranch") groups=["Prisoner"]]
+position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_j31ep")
 abilitiesStateBranch = NodePath("CharacterStateHandler/AbilityBranch")

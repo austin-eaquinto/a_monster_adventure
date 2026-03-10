@@ -45,14 +45,14 @@ public partial class AllyIdleState : CharacterState
 		base.Enter();
 		(character as Character).velocity = Vector2.Zero;
 		player = (character as Ally).getPlayer();
-		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
 
 	}
 
     public override void Exit()
     {
         base.Exit();
-		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.Instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
 
     }
 
