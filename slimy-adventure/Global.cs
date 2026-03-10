@@ -29,7 +29,7 @@ public partial class Global : Node
 					{"isImprisoned", true},
 					{"sceneName", ""},
 					{"position", new Vector2(0,0)},
-					{"allyScene", "res://characters/allies/ally.tscn"}
+					{"allyScene", "res://characters/allies/spider_ally.tscn"}
 				} 
 			},
             { 2, new Dictionary<string, Variant>

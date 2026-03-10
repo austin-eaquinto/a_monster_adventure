@@ -33,6 +33,7 @@ public partial class GuardPauseState : CharacterState
 
 	protected virtual void SearchForPlayer()
 	{
+		(character as Guard).targetExists();
 		bool seesPrisoner = (character as Guard).GuardSeesPrisoner((character as Guard)._targetPrisoner);
 		if (!seesPrisoner) seesPrisoner = (character as Guard).GuardSeesNewTargetPrisoner();
 

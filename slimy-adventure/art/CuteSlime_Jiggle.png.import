@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg2csofh4l18l"
-path="res://.godot/imported/CuteSlime_Walk.png-e1b8fa92241a76821913645896dda32e.ctex"
+uid="uid://6wdpr47kk20a"
+path="res://.godot/imported/CuteSlime_Jiggle.png-3a2ebad8d1febc784cd037a194c079d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/CuteSlime_Walk.png"
-dest_files=["res://.godot/imported/CuteSlime_Walk.png-e1b8fa92241a76821913645896dda32e.ctex"]
+source_file="res://art/CuteSlime_Jiggle.png"
+dest_files=["res://.godot/imported/CuteSlime_Jiggle.png-3a2ebad8d1febc784cd037a194c079d2.ctex"]
 
 [params]
 

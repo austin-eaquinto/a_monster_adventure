@@ -46,6 +46,20 @@ public partial class Guard : Character
 	}
 
 	public Character _targetPrisoner;
+	public bool targetExists()
+	{
+		if (_targetPrisoner != null)
+		{
+			if (_targetPrisoner.IsInsideTree())
+			{
+				return true;
+			}
+		}
+		
+		_targetPrisoner = null;
+		return false;
+	}
+
 	public Vector2 investigatePos = Vector2.Zero;
 	public bool GuardSeesNewTargetPrisoner()
 	{
@@ -82,6 +96,11 @@ public partial class Guard : Character
 	public bool GuardSeesPrisoner(Character prisoner)
 	{
 		if (prisoner == null)
+		{
+			return false;
+		}
+
+		if (!prisoner.IsInsideTree())
 		{
 			return false;
 		}

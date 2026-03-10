@@ -35,6 +35,13 @@ public partial class GuardChaseState : CharacterState
 		if (character != null) (character as Character).animation_name = "walk_";
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+		(character as Character).velocity = Vector2.Zero;
+    }
+
+
 
 	public override bool EvaluateStateCondition()
     {
@@ -86,6 +93,14 @@ public partial class GuardChaseState : CharacterState
 
 	protected virtual void Chase(double delta)
 	{
+		
+		if (!(character as Guard).targetExists())
+		{
+			lostPlayer();
+			timer.Stop();
+			return;
+		}
+		
 		Character prisoner = (character as Guard)._targetPrisoner;
 		navAgent.TargetPosition = prisoner.GlobalPosition;
 		
