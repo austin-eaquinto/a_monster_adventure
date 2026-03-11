@@ -4,6 +4,7 @@ using System;
 
 public partial class Player : Character
 {
+
 	[Export]
 	public StateCondition abilitiesStateBranch {get; set;} = null;
 
@@ -14,7 +15,8 @@ public partial class Player : Character
 		if (!followingAllies.Contains(ally))
 		{
 			followingAllies.Add(ally);
-			abilitiesStateBranch.AddChild(followingAllies[followingAllies.IndexOf(ally)].createNewStateBranchLink());
+			if (followingAllies[followingAllies.IndexOf(ally)].abilityStateBranch != null)
+				abilitiesStateBranch.AddChild(followingAllies[followingAllies.IndexOf(ally)].createNewStateBranchLink());
 		}
 	}
 
@@ -26,8 +28,9 @@ public partial class Player : Character
 	{
 		if (followingAllies.Contains(ally))
 		{
+			if (followingAllies[followingAllies.IndexOf(ally)].abilityStateBranchLink != null)
+				abilitiesStateBranch.RemoveChild(followingAllies[followingAllies.IndexOf(ally)].abilityStateBranchLink);
 			followingAllies.Remove(ally);
-			abilitiesStateBranch.RemoveChild(followingAllies[followingAllies.IndexOf(ally)].abilityStateBranchLink);
 		}
 	}
 

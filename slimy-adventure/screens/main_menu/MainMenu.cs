@@ -1,12 +1,14 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class MainMenu : Control
 {
-	private void _on_new_game_pressed()
-	{
-		GetTree().ChangeSceneToFile("res://screens/world/prison/prison.tscn");
-	}
+	private async void _on_new_game_pressed()
+{
+    Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
+    await Global.Instance.TransitionScene("LoadingScreen");
+}
 
 	private void _on_load_game_pressed()
 	{
