@@ -6,6 +6,9 @@ using System.Collections.Generic;
 public partial class Character : CharacterBody2D
 {
 	[Export]
+	public bool detectable = true;
+
+	[Export]
 	public int Speed { get; set; } = 300;
 	
 	public String facingDirection = "down";

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5ukg5fe4xo3p"]
+[gd_scene load_steps=19 format=3 uid="uid://b5ukg5fe4xo3p"]
 
 [ext_resource type="Script" uid="uid://b28vpjv2hyymj" path="res://characters/guards/Guard.cs" id="1_aoykg"]
 [ext_resource type="Texture2D" uid="uid://ctjushx6xm0l4" path="res://art/This_Thing.png" id="2_aoykg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dwcpryhjkb08v" path="res://StateMachine/Character/GuardStates/GuardPauseState.cs" id="5_lrhy8"]
 [ext_resource type="Script" uid="uid://dxvx4vfrdmnm5" path="res://StateMachine/Character/GuardStates/GuardPatrolState.cs" id="6_ay375"]
 [ext_resource type="Script" uid="uid://smvkfwp4l6pt" path="res://StateMachine/Character/GuardStates/GuardCatchState.cs" id="6_ioqu5"]
+[ext_resource type="Script" uid="uid://qe7g7q7316hv" path="res://StateMachine/Character/GuardStates/GuardInvestigateState.cs" id="10_w7pov"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cruxe"]
 atlas = ExtResource("2_aoykg")
@@ -73,6 +74,7 @@ radius = 32.0
 radius = 50.0
 
 [node name="Guard" type="CharacterBody2D" node_paths=PackedStringArray("raycast2D", "lightPivot") groups=["Guard"]]
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_aoykg")
 raycast2D = NodePath("RayCast2D")
@@ -138,6 +140,12 @@ metadata/_custom_type_script = "uid://baofqvuexikko"
 script = ExtResource("5_lrhy8")
 metadata/_custom_type_script = "uid://dwcpryhjkb08v"
 
-[node name="GuardCatchState" type="Node" parent="CharacterStateHandler"]
+[node name="GuardCatchState" type="Node" parent="CharacterStateHandler" node_paths=PackedStringArray("captureArea")]
 script = ExtResource("6_ioqu5")
+captureArea = NodePath("../../CaptureArea")
 metadata/_custom_type_script = "uid://smvkfwp4l6pt"
+
+[node name="GuardInvestigateState" type="Node" parent="CharacterStateHandler" node_paths=PackedStringArray("navAgent")]
+script = ExtResource("10_w7pov")
+navAgent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://qe7g7q7316hv"

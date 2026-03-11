@@ -1,6 +1,6 @@
 [gd_scene load_steps=120 format=3 uid="uid://mgnrp1qhc7em"]
 
-[ext_resource type="Script" uid="uid://bi2g7vuqu0rfv" path="res://characters/Player.cs" id="1_j31ep"]
+[ext_resource type="Script" uid="uid://bi2g7vuqu0rfv" path="res://characters/player/Player.cs" id="1_j31ep"]
 [ext_resource type="Texture2D" uid="uid://bb2lxe0t3f54d" path="res://art/Slime1_Hurt_full.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c5fwikaraumsh" path="res://art/Slime1_Idle_full.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://jl6q06tnv1g4" path="res://art/Slime1_Run_full.png" id="4_1jxqw"]
@@ -851,9 +851,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jxqw"]
 radius = 7.0
-height = 20.000002
+height = 32.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("abilitiesStateBranch") groups=["Prisoner"]]
+position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_j31ep")
 abilitiesStateBranch = NodePath("CharacterStateHandler/AbilityBranch")
