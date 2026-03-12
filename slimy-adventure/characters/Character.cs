@@ -6,7 +6,10 @@ using System.Collections.Generic;
 public partial class Character : CharacterBody2D
 {
 	[Export]
-	public int Speed { get; set; } = 300;
+	public bool detectable = true;
+
+	[Export]
+	public int Speed { get; set; } = 200;
 	
 	public String facingDirection = "down";
 	public String animation_name = "idle_";
