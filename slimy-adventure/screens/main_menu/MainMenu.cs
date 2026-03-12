@@ -10,7 +10,7 @@ public partial class MainMenu : Control
 
     private void _on_load_game_pressed()
     {
-        GetTree().ChangeSceneToFile("res://screens/saves/saves.tscn");
+        GetTree().ChangeSceneToFile("res://screens/world/field/field.tscn");
     }
 
     private void _on_settings_pressed()
