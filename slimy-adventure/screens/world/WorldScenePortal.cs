@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class WorldScenePortal : Area2D
 {
@@ -15,16 +16,16 @@ public partial class WorldScenePortal : Area2D
 		BodyEntered += onBodyEntered;
 	}
 
-	public void onBodyEntered(Node2D body)
+	public async void onBodyEntered(Node2D body)
 	{
-		if (body == Global.instance.player)
+		if (body == Global.Instance.player)
 		{
-			changeScene();
+			await changeScene();
 		}
 	}
 
-	public void changeScene()
+	public async Task changeScene()
 	{
-		Global.instance.TransitionWorldScene(sceneName,playerInstantiatorId);
+		await Global.Instance.TransitionWorldScene(sceneName,playerInstantiatorId);
 	}
 }

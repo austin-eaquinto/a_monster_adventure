@@ -145,7 +145,7 @@ public partial class AllyFleeState : CharacterState
 		Vector2 direction = (navAgent.GetNextPathPosition() - character.GlobalPosition).Normalized();
 		
 		(character as Character).velocity = direction * (character as Character).Speed;
-		Global.instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
+		Global.Instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
 
 		
 

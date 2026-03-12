@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 
 [GlobalClass]
 public partial class GuardCatchState : CharacterState
@@ -16,18 +17,22 @@ public partial class GuardCatchState : CharacterState
 
 	public override void Enter()
 	{
-		
-		if ((character as Guard)._targetPrisoner == Global.instance.player)
+		HandleCatch();
+	}
+
+	private async void HandleCatch()
+	{
+		if ((character as Guard)._targetPrisoner == Global.Instance.player)
 		{
-			Global.instance.TransitionWorldScene("Prison",0);
+			await Global.Instance.TransitionWorldScene("Prison",0);
 		}
 		else if ((character as Guard)._targetPrisoner is Ally)
 		{
 			Ally ally = (character as Guard)._targetPrisoner as Ally;
 			int allyId = ally.id;
 
-			Global.instance.allyDict[allyId]["isImprisoned"] = true;
-			Global.instance.allyDict[allyId]["isFollowing"] = false;
+			Global.Instance.allyDict[allyId]["isImprisoned"] = true;
+			Global.Instance.allyDict[allyId]["isFollowing"] = false;
 			ally.EmitSignal("Captured");
 			ally.RemoveFromGroup("Prisoner");
 			ally.QueueFree();
