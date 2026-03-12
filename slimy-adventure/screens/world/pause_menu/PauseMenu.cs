@@ -14,8 +14,8 @@ public partial class PauseMenu : CanvasLayer
 
     public override void _Ready()
     {
-       var resumeButton = GetNode<Button>("VBoxContainer/Resume");
-       var quiteButton = GetNode<Button>("VBoxContainer/Quit");
+       var resumeButton = GetNode<Godot.Button>("VBoxContainer/Resume");
+       var quiteButton = GetNode<Godot.Button>("VBoxContainer/Quit");
 
        resumeButton.Pressed += OnResumePressed;
        quiteButton.Pressed += OnQuitPressed;
