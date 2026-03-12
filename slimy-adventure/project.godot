@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Global="*res://Global.cs"
 PauseMenu="*res://screens/world/pause_menu/pause_menu.tscn"
+GameCamera="*res://GameCamera.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

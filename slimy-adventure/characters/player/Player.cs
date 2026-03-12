@@ -10,6 +10,20 @@ public partial class Player : Character
 
 	public Array<Ally> followingAllies = [];
 
+    public override void _Ready()
+    {
+        // Find the camera in the scene tree and tell it to follow 'this'
+		var camera = GetNode<GameCamera>("/root/GameCamera");
+
+		if (camera != null)
+		{
+			camera.SetTarget(this);
+			// Prevents the camera from "sliding" from (0,0) to the player
+			camera.SnapToTarget();
+		}
+    }
+
+
 	public void addAlly(Ally ally)
 	{
 		if (!followingAllies.Contains(ally))

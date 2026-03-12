@@ -8,6 +8,7 @@ public partial class Global : Node
 	
 	public static Global Instance { get; private set; }
 	public Player player {get; set;}
+	public Vector2 CurrentZoom { get; set; } = new Vector2(1.0f, 1.0f);
 
 	[Signal]
 	public delegate void AlertGuardsEventHandler(Vector2 alertPosition, Character spottedPrisoner);

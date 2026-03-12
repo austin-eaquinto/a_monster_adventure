@@ -870,9 +870,6 @@ position = Vector2(0, 7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-
 [node name="CharacterStateHandler" type="Node" parent="."]
 script = ExtResource("6_n8jd0")
 Active = true
