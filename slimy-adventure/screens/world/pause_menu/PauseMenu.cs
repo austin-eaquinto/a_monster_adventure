@@ -14,8 +14,8 @@ public partial class PauseMenu : CanvasLayer
 
     public override void _Ready()
     {
-       var resumeButton = GetNode<Button>("VBoxContainer/Resume");
-       var quiteButton = GetNode<Button>("VBoxContainer/Quit");
+       var resumeButton = GetNode<Godot.Button>("VBoxContainer/Resume");
+       var quiteButton = GetNode<Godot.Button>("VBoxContainer/Quit");
 
        resumeButton.Pressed += OnResumePressed;
        quiteButton.Pressed += OnQuitPressed;
@@ -42,7 +42,7 @@ public partial class PauseMenu : CanvasLayer
         {
             GD.Print("Pressed the Escape key.");
 
-            if (GetTree().CurrentScene.Name == "main_menu")
+            if (GetTree().CurrentScene.Name == "main_menu" || GetTree().CurrentScene.Name == "credits")
             {
                 return;
             }

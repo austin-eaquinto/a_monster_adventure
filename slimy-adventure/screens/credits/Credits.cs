@@ -15,11 +15,11 @@ public partial class Credits : Control
 		var node2D = GetNode<Node2D>("Node2D");
 		
 		node2D.Position += direction;
-	}
-  
-	private void  _on_back_pressed()
-	{
-		GetTree().ChangeSceneToFile("res://screens/main_menu/main_menu.tscn");
+
+		if (Input.IsActionJustPressed("ui_cancel"))
+		{
+			GetTree().ChangeSceneToFile("res://screens/main_menu/main_menu.tscn");
+		}	
 	}
   
 	private void OnScreenExited()
