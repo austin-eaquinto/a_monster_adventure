@@ -42,7 +42,7 @@ public partial class PauseMenu : CanvasLayer
         {
             GD.Print("Pressed the Escape key.");
 
-            if (GetTree().CurrentScene.Name == "main_menu")
+            if (GetTree().CurrentScene.Name == "main_menu" || GetTree().CurrentScene.Name == "credits")
             {
                 return;
             }
