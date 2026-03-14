@@ -12,7 +12,7 @@ public partial class MainMenu : Control
 
 	private void _on_load_game_pressed()
 	{
-		
+		Global.Instance.LoadGame();
 	}
 
 	private void _on_settings_pressed()

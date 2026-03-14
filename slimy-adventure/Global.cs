@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 using System.Threading.Tasks;
+using System.Text.Json; // for data saves
 
 public partial class Global : Node
 {
@@ -65,10 +66,23 @@ public partial class Global : Node
 
 	public async Task TransitionWorldScene(string sceneName,int playerInstantiatorId){
 		
+		// Example: Set specific zoom levels per scene
+		if (sceneName == "Field") 
+			CurrentZoom = new Vector2(0.8f, 0.8f); // Zoom out a bit
+		else
+			CurrentZoom = new Vector2(1.0f, 1.0f); // Standard zoom
+
 		await TransitionScene(sceneName);
 		await ToSignal(GetTree(), SceneTree.SignalName.SceneChanged);
-		PrintAllNodes();
+		
+		// The camera's _Ready() will now pull the updated CurrentZoom
 		DoPlayerInstantiation(playerInstantiatorId);
+
+		// await TransitionScene(sceneName);
+		// await ToSignal(GetTree(), SceneTree.SignalName.SceneChanged);
+		// PrintAllNodes();
+		// DoPlayerInstantiation(playerInstantiatorId);
+		PrintAllNodes();
 	}
 
 	public void DoPlayerInstantiation(int playerInstantiatorId)
@@ -126,5 +140,69 @@ public partial class Global : Node
 			GD.Print(child," : ",child.Name);
 			PrintAllNodes(child);
 		}
+	}
+
+	public void SaveGame()
+	{
+		var data = new SaveData
+		{
+			CurrentSceneName = currentSceneName,
+			ZoomX = CurrentZoom.X,
+			ZoomY = CurrentZoom.Y,
+			PlayerPosX = player.GlobalPosition.X,
+			PlayerPosY = player.GlobalPosition.Y
+		};
+
+		foreach (var pair in allyDict)
+		{
+			data.Allies.Add(new AllySaveEntry
+			{
+				Id = pair.Key,
+				IsFollowing = pair.Value["isFollowing"].AsBool(),
+				IsImprisoned = pair.Value["isImprisoned"].AsBool(),
+				PosX = pair.Value["position"].AsVector2().X,
+				PosY = pair.Value["position"].AsVector2().Y,
+				SceneName = pair.Value["sceneName"].AsString()
+			});
+		}
+
+		string jsonString = JsonSerializer.Serialize(data);
+		using var file = FileAccess.Open("user://savegame.json", FileAccess.ModeFlags.Write);
+		file.StoreString(jsonString);
+		GD.Print("Game Saved!");
+	}
+
+	public async void LoadGame()
+	{
+		if (!FileAccess.FileExists("user://savegame.json")) return;
+
+		using var file = FileAccess.Open("user://savegame.json", FileAccess.ModeFlags.Read);
+		string jsonString = file.GetAsText();
+		SaveData data = JsonSerializer.Deserialize<SaveData>(jsonString);
+
+		// 1. Restore Global State
+		currentSceneName = data.CurrentSceneName;
+		CurrentZoom = new Vector2(data.ZoomX, data.ZoomY);
+
+		foreach (var ally in data.Allies)
+		{
+			if (allyDict.ContainsKey(ally.Id))
+			{
+				allyDict[ally.Id]["isFollowing"] = ally.IsFollowing;
+				allyDict[ally.Id]["isImprisoned"] = ally.IsImprisoned;
+				allyDict[ally.Id]["position"] = new Vector2(ally.PosX, ally.PosY);
+				allyDict[ally.Id]["sceneName"] = ally.SceneName;
+			}
+		}
+
+		// 2. Transition to scene
+		// We use a flag or temporary variable if we want the player to snap to their saved pos
+		// instead of the Instantiator's default pos.
+		await TransitionWorldScene(currentSceneName, 0); 
+		
+		// 3. Optional: Manually set player position if you don't want them at the spawn point
+		player.GlobalPosition = new Vector2(data.PlayerPosX, data.PlayerPosY);
+		
+		GD.Print("Game Loaded!");
 	}
 }

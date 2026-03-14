@@ -20,6 +20,7 @@ public partial class WorldScenePortal : Area2D
 	{
 		if (body == Global.Instance.player)
 		{
+			Global.Instance.SaveGame();	// save the progress before leaving the current scene
 			await changeScene();
 		}
 	}

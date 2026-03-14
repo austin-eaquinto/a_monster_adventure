@@ -19,6 +19,19 @@ public partial class PauseMenu : CanvasLayer
 
        resumeButton.Pressed += OnResumePressed;
        quiteButton.Pressed += OnQuitPressed;
+
+       // Inside PauseMenu.cs _Ready or similar
+        var saveButton = GetNode<Button>("VBoxContainer/Save"); // Assuming you add this button
+        saveButton.Pressed += () => {
+            Global.Instance.SaveGame();
+        };
+
+        // var loadButton = GetNode<Button>("VBoxContainer/Load");
+        // loadButton.Pressed += () => {
+        //     GetTree().Paused = false; // Unpause before loading
+        //     this.Visible = false;
+        //     Global.Instance.LoadGame();
+        // };
     }
 
     public void OnResumePressed()
