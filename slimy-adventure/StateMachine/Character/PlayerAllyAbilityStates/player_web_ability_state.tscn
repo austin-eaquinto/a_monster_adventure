@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://db0hvgb2v5t6p"]
+[gd_scene load_steps=2 format=3 uid="uid://berhyknsp5xb0"]
 
+<<<<<<<< HEAD:slimy-adventure/StateMachine/Character/PlayerAllyAbilityStates/player_web_ability_state.tscn
 [ext_resource type="Script" uid="uid://dhinkl5pwt48m" path="res://StateMachine/Character/PlayerAllyAbilityStates/PlayerWebAbilityState.cs" id="1_ntaa6"]
+========
+[ext_resource type="Script" uid="uid://dhinkl5pwt48m" path="res://StateMachine/Character/Player/PlayerWebAbilityState.cs" id="1_ntaa6"]
+>>>>>>>> main:slimy-adventure/player_web_ability_state.tscn
 
 [node name="PlayerWebAbilityState" type="Node" node_paths=PackedStringArray("rayCast2D")]
 script = ExtResource("1_ntaa6")
