@@ -61,11 +61,13 @@ public partial class GuardChaseState : CharacterState
 		else
 		{
 			(character as Guard).state = Guard.GuardStates.Catch;
+			timer.Stop();
 		}
 	}
 
 	protected void lostPlayer()
 	{
+		(character as Guard)._targetPrisoner = null;
 		(character as Guard).state = Guard.GuardStates.Pause;
 	}
 	
@@ -94,7 +96,7 @@ public partial class GuardChaseState : CharacterState
 	protected virtual void Chase(double delta)
 	{
 		
-		if (!(character as Guard).targetExists())
+		if (!(character as Guard).prisonerExists((character as Guard)._targetPrisoner))
 		{
 			lostPlayer();
 			timer.Stop();

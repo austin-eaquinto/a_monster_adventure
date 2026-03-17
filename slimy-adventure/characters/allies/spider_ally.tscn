@@ -15,4 +15,4 @@ script = ExtResource("2_4q4av")
 metadata/_custom_type_script = "uid://d12yksriwei62"
 
 [node name="PlayerWebAbilityState" parent="AbilityStateBranch" index="0" instance=ExtResource("3_wuxbe")]
-cooldownTime = 1.0
+inputName = "ability2"

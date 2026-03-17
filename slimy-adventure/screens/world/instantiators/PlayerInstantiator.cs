@@ -26,7 +26,7 @@ public partial class PlayerInstantiator : Node2D
                 GetParent().CallDeferred("add_child",newAlly);
                 newAlly.GlobalPosition = allySpawnNode2d.GlobalPosition;
                 Global.instance.player.addAlly(newAlly);
-                newAlly.state = Ally.AllyStates.Follow;
+                newAlly.state = Ally.AllyStates.PerfectFollow;
                 newAlly.id = allyId;
             }
         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c6y8h5xoghkgt"]
+[gd_scene load_steps=56 format=3 uid="uid://c6y8h5xoghkgt"]
 
 [ext_resource type="Script" uid="uid://dbk7dhv76aeir" path="res://characters/allies/Ally.cs" id="1_ug7p0"]
 [ext_resource type="Texture2D" uid="uid://bg2csofh4l18l" path="res://art/CuteSlime_Hop.png" id="2_e4opj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dfp13l8miqkmy" path="res://StateMachine/Character/AllyStates/AllyFollowState.cs" id="3_ug7p0"]
 [ext_resource type="Script" uid="uid://drryb5tk1ty3m" path="res://StateMachine/Character/AllyStates/AllyIdleState.cs" id="4_e4opj"]
 [ext_resource type="Script" uid="uid://c0ny0s6vkbion" path="res://StateMachine/Character/AllyStates/AllyFleeState.cs" id="4_rebpd"]
+[ext_resource type="Script" uid="uid://cayw3hckj5ex" path="res://StateMachine/Character/AllyStates/AllyPerfectFollowState.cs" id="8_8vggk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3et5"]
 atlas = ExtResource("2_ej3vy")
@@ -408,6 +409,10 @@ script = ExtResource("4_rebpd")
 navAgent = NodePath("../../NavigationAgent2D")
 rayCast2D = NodePath("../../RayCast2D")
 metadata/_custom_type_script = "uid://c0ny0s6vkbion"
+
+[node name="AllyPerfectFollowState" type="Node" parent="CharacterStateHandler"]
+script = ExtResource("8_8vggk")
+metadata/_custom_type_script = "uid://cayw3hckj5ex"
 
 [node name="JoinArea" type="Area2D" parent="."]
 

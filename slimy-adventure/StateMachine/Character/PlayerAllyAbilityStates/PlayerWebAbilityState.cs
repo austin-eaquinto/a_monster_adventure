@@ -48,6 +48,8 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 		}
 	}
 
+
+
 	public override void Enter()
 	{
 		base.Enter();
@@ -56,6 +58,12 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 
 		rayCast2D.ClearExceptions();
 		rayCast2D.AddException(player);
+
+		foreach (Ally ally in player.followingAllies)
+		{
+			ally.followWeight = 10.0f;
+			ally.detectable = false;
+		}
 
 		rayCast2D.GlobalPosition = player.GlobalPosition;
 		rayCast2D.TargetPosition = player.GetLocalMousePosition().Normalized() * webLength;
@@ -80,6 +88,13 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
     public override void Exit()
     {
         base.Exit();
+
+		
+		foreach (Ally ally in player.followingAllies)
+		{
+			ally.followWeight = 5.0f;
+			ally.detectable = true;
+		}
 
 		webMadeContact = false;
 		webIsPulling = false;

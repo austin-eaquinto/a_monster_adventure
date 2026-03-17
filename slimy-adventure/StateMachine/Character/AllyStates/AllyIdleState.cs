@@ -34,7 +34,7 @@ public partial class AllyIdleState : CharacterState
 		}
 		else
 		{
-			(character as Ally).state = Ally.AllyStates.Follow;
+			(character as Ally).state = Ally.AllyStates.PerfectFollow;
 		}
 	}
 

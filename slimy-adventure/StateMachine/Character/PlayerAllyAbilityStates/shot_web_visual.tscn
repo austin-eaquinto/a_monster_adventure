@@ -30,5 +30,3 @@ visible = false
 position = Vector2(32, 0)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_uxfs7")
-
-[node name="Camera2D" type="Camera2D" parent="."]
