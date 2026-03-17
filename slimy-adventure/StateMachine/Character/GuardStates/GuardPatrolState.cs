@@ -32,14 +32,14 @@ public partial class GuardPatrolState : CharacterState
 			if (line2D != null)
 				GetRandomPoint();//GetClosestPoint();
 		}
-		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
 		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()
     {
         base.Exit();
-		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		Global.Instance.Disconnect("AlertGuards",new Callable(this,"PrepareInvestigate"));
     }
 
 
@@ -75,7 +75,7 @@ public partial class GuardPatrolState : CharacterState
 
 		if (seesPrisoner) 
 		{
-			Global.instance.EmitSignal("AlertGuards", (character as Guard)._targetPrisoner.GlobalPosition, (character as Guard)._targetPrisoner);
+			Global.Instance.EmitSignal("AlertGuards", (character as Guard)._targetPrisoner.GlobalPosition, (character as Guard)._targetPrisoner);
 			(character as Guard).state = Guard.GuardStates.Chase;
 		}
 	}

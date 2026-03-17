@@ -43,7 +43,7 @@ public partial class Player : Character
 
 	public void PrepareFree()
 	{
-		Global.instance.player = null;
+		Global.Instance.player = null;
 
 		foreach (Ally ally in followingAllies)
 		{

@@ -23,9 +23,9 @@ public partial class AllyPerfectFollowState : CharacterState
 		base.Enter();
 		player = (character as Ally).getPlayer();
 		player.addAlly(character as Ally);
-		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
-		Global.instance.allyDict[(character as Ally).id]["isFollowing"] = true;
-		Global.instance.allyDict[(character as Ally).id]["isImprisoned"] = false;
+		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.Instance.allyDict[(character as Ally).id]["isFollowing"] = true;
+		Global.Instance.allyDict[(character as Ally).id]["isImprisoned"] = false;
 	}
 
 	public override void Exit()
@@ -33,10 +33,10 @@ public partial class AllyPerfectFollowState : CharacterState
 		base.Exit();
 		player.removeAlly(character as Ally);
 		player = null;
-		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
-		Global.instance.allyDict[(character as Ally).id]["isFollowing"] = false;
-		Global.instance.allyDict[(character as Ally).id]["sceneName"] = Global.instance.currentSceneName;
-		Global.instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
+		Global.Instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.Instance.allyDict[(character as Ally).id]["isFollowing"] = false;
+		Global.Instance.allyDict[(character as Ally).id]["sceneName"] = Global.Instance.currentSceneName;
+		Global.Instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
 
 	}
 	

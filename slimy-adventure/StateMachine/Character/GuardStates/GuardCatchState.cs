@@ -34,7 +34,7 @@ public partial class GuardCatchState : CharacterState
 			captureVisual.setPrisonerSpriteFrames(caughtPrisoner.getAnimatedSprite().SpriteFrames);
 			captureVisual.Connect("CageFading",new Callable(this,"endCatch"));
 
-			if (caughtPrisoner == Global.instance.player)
+			if (caughtPrisoner == Global.Instance.player)
 			{
 				Player player = caughtPrisoner as Player;
 				player.PrepareFree();
@@ -47,7 +47,7 @@ public partial class GuardCatchState : CharacterState
 				Ally ally = caughtPrisoner as Ally;
 				int allyId = ally.id;
 
-				Global.instance.allyDict[allyId]["isImprisoned"] = true;
+				Global.Instance.allyDict[allyId]["isImprisoned"] = true;
 				ally.EmitSignal("Captured");
 				ally.RemoveFromGroup("Prisoner");
 			}
@@ -64,7 +64,7 @@ public partial class GuardCatchState : CharacterState
 		GD.Print("?????");
 		if (caughtPrisonerIsPlayer)
 		{
-			Global.instance.TransitionWorldScene("Prison",0);
+			Global.Instance.TransitionWorldScene("Prison",0);
 		}
 		(character as Guard).state = Guard.GuardStates.Pause;
 	}
