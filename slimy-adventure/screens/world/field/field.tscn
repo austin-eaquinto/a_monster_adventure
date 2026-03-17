@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://de57g85b50dkh"]
+[gd_scene load_steps=37 format=4 uid="uid://de57g85b50dkh"]
 
 [ext_resource type="Texture2D" uid="uid://dx0rj7q66cn75" path="res://art/fieldAssets/Autotile_Grass_and_Dirt_Path_Tileset.png" id="1_pg2qj"]
 [ext_resource type="Texture2D" uid="uid://dpiow7a5443hw" path="res://art/fieldAssets/Tileset_Floor_Detail.png" id="2_8npic"]
@@ -4000,20 +4000,17 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_guacd")
 sources/1 = SubResource("TileSetAtlasSource_6d11j")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwdor"]
-size = Vector2(80, 135)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgrql"]
-size = Vector2(31, 119)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pb8i"]
-size = Vector2(48, 135)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guacd"]
 size = Vector2(60, 103)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d11j"]
-size = Vector2(92, 125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwdor"]
+size = Vector2(80, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgrql"]
+size = Vector2(48, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pb8i"]
+size = Vector2(20, 118)
 
 [node name="Node2D" type="Node2D"]
 
@@ -4052,20 +4049,6 @@ position = Vector2(287, 28)
 scale = Vector2(0.3, 0.3)
 Speed = 150
 
-[node name="house collision" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="house collision"]
-position = Vector2(360, 204)
-shape = SubResource("RectangleShape2D_qwdor")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="house collision"]
-position = Vector2(408.5, 196.5)
-shape = SubResource("RectangleShape2D_xgrql")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="house collision"]
-position = Vector2(440, 204.5)
-shape = SubResource("RectangleShape2D_8pb8i")
-
 [node name="treesCollision" type="StaticBody2D" parent="."]
 position = Vector2(404, 68)
 
@@ -4073,8 +4056,18 @@ position = Vector2(404, 68)
 position = Vector2(4, 23.5)
 shape = SubResource("RectangleShape2D_guacd")
 
-[node name="barnCollision" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = 14
+position = Vector2(392, 193)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barnCollision"]
-position = Vector2(249, 205.5)
-shape = SubResource("RectangleShape2D_6d11j")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-32, 12)
+shape = SubResource("RectangleShape2D_qwdor")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(48, 12)
+shape = SubResource("RectangleShape2D_xgrql")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(16, 4)
+shape = SubResource("RectangleShape2D_8pb8i")
