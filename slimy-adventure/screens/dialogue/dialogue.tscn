@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://badnen7grpksc"]
 
-[ext_resource type="Script" uid="uid://d3lv0wcauixk" path="res://screens/textbox/Textbox.cs" id="1_crj2x"]
+[ext_resource type="Script" uid="uid://d3lv0wcauixk" path="res://screens/dialogue/dialogue.cs" id="1_crj2x"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
