@@ -61,7 +61,6 @@ public partial class GuardCatchState : CharacterState
 
 	public void endCatch()
 	{
-		GD.Print("?????");
 		if (caughtPrisonerIsPlayer)
 		{
 			Global.Instance.TransitionWorldScene("Prison",0);
