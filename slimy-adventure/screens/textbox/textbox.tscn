@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://badnen7grpksc"]
+
+[ext_resource type="Script" uid="uid://d3lv0wcauixk" path="res://screens/textbox/Textbox.cs" id="1_crj2x"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_crj2x")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 90.0
+offset_top = -182.0
+offset_right = -80.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+patch_margin_left = 50
+patch_margin_right = 50
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 607.0
+offset_right = 1071.0
+offset_bottom = 638.0
+text = "Continue"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 476.0
+offset_right = 957.0
+offset_bottom = 602.0
+text = "This is the placeholder text, replace it with custom text for each scene. "
