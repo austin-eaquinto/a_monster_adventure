@@ -34,7 +34,7 @@ public partial class AllyIdleState : CharacterState
 		}
 		else
 		{
-			(character as Ally).state = Ally.AllyStates.Follow;
+			(character as Ally).state = Ally.AllyStates.PerfectFollow;
 		}
 	}
 
@@ -45,14 +45,15 @@ public partial class AllyIdleState : CharacterState
 		base.Enter();
 		(character as Character).velocity = Vector2.Zero;
 		player = (character as Ally).getPlayer();
-		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		if (character != null) (character as Character).animation_name = "idle_";
 
 	}
 
     public override void Exit()
     {
         base.Exit();
-		Global.Instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
 
     }
 

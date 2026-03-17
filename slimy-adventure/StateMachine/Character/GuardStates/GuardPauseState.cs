@@ -49,6 +49,7 @@ public partial class GuardPauseState : CharacterState
 		base.Enter();
 		timer.Start();
 		(character as Character).velocity = Vector2.Zero;
+		if (character != null) (character as Character).animation_name = "idle_";
 	}
 	
 	public override void _Process(double delta)

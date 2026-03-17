@@ -3,14 +3,12 @@ using System;
 using System.Drawing;
 
 [GlobalClass]
-public partial class AllyFollowState : CharacterState
+public partial class AllyPerfectFollowState : CharacterState
 {
-	[Export]
-	public NavigationAgent2D navAgent { get; set;} = null;
 
 	public override bool EvaluateStateCondition()
     {
-		return (character as Ally).state == Ally.AllyStates.Follow;
+		return (character as Ally).state == Ally.AllyStates.PerfectFollow;
     }
 
 	public override void _Ready()
@@ -25,9 +23,9 @@ public partial class AllyFollowState : CharacterState
 		base.Enter();
 		player = (character as Ally).getPlayer();
 		player.addAlly(character as Ally);
-		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
-		Global.Instance.allyDict[(character as Ally).id]["isFollowing"] = true;
-		Global.Instance.allyDict[(character as Ally).id]["isImprisoned"] = false;
+		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.instance.allyDict[(character as Ally).id]["isFollowing"] = true;
+		Global.instance.allyDict[(character as Ally).id]["isImprisoned"] = false;
 	}
 
 	public override void Exit()
@@ -35,13 +33,13 @@ public partial class AllyFollowState : CharacterState
 		base.Exit();
 		player.removeAlly(character as Ally);
 		player = null;
-		Global.Instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
-		Global.Instance.allyDict[(character as Ally).id]["isFollowing"] = false;
-		Global.Instance.allyDict[(character as Ally).id]["sceneName"] = Global.Instance.currentSceneName;
-		Global.Instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
+		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareFlee"));
+		Global.instance.allyDict[(character as Ally).id]["isFollowing"] = false;
+		Global.instance.allyDict[(character as Ally).id]["sceneName"] = Global.instance.currentSceneName;
+		Global.instance.allyDict[(character as Ally).id]["position"] = character.GlobalPosition;
 
 	}
-
+	
 	public void PrepareFlee(Vector2 alertPosition, Character spottedPrisoner)
 	{
 		GD.Print("Ally flees");
@@ -50,7 +48,6 @@ public partial class AllyFollowState : CharacterState
 			(character as Ally).state = Ally.AllyStates.Flee;
 		}
 	}
-	
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -60,22 +57,38 @@ public partial class AllyFollowState : CharacterState
 		
 	}
 
+	public bool idle = false;
+
 	protected virtual void Follow(double delta)
 	{
 
 		int allyIndex = player.getAllyIndex(character as Ally);
 		
-		navAgent.TargetPosition =  (allyIndex == 0) ? player.GlobalPosition: player.followingAllies[allyIndex - 1].GlobalPosition ;
-		Vector2 direction = (navAgent.GetNextPathPosition() - character.GlobalPosition).Normalized();
+		Vector2 targetPosition =  (allyIndex == 0) ? player.GlobalPosition: player.followingAllies[allyIndex - 1].GlobalPosition ;
+		Vector2 localTargetPosition = (targetPosition - (character as Character).GlobalPosition);
+		float distance = localTargetPosition.Length() - 50;
+		Vector2 direction = localTargetPosition.Normalized();
 
-		if (navAgent.GetPathLength() < 100.0f) 
+		if (distance <= 25.0f)
+		{
+			idle = true;
+			(character as Character).velocity = Vector2.Zero;
+			if (character != null) (character as Character).animation_name = "idle_";
+			return;
+		}
+		else if (idle && distance <= 50.0f) 
 		{
 			(character as Character).velocity = Vector2.Zero;
 			if (character != null) (character as Character).animation_name = "idle_";
 			return;
 		}
+		else
+		{
+			idle = false;
+		}
 		
-		(character as Character).velocity = direction * (character as Character).Speed;
+		
+		(character as Character).velocity = distance * (character as Ally).followWeight * direction;
 		if (character != null) (character as Character).animation_name = "walk_";
 
 

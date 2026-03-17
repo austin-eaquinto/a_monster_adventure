@@ -22,13 +22,14 @@ public partial class GuardInvestigateState : CharacterState
 	{
 		base.Enter();
 		navAgent.TargetPosition = (character as Guard).investigatePos;
-		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		Global.instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()
     {
         base.Exit();
-		Global.Instance.Disconnect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		Global.instance.Disconnect("AlertGuards",new Callable(this,"PrepareInvestigate"));
     }
 
 
@@ -51,12 +52,13 @@ public partial class GuardInvestigateState : CharacterState
 
 	protected virtual void SearchForPlayer()
 	{
+		
 		bool seesPrisoner = (character as Guard).GuardSeesPrisoner((character as Guard)._targetPrisoner);
 		if (!seesPrisoner) seesPrisoner = (character as Guard).GuardSeesNewTargetPrisoner();
 
 		if (seesPrisoner) 
 		{
-			Global.Instance.EmitSignal("AlertGuards", (character as Guard)._targetPrisoner.GlobalPosition, (character as Guard)._targetPrisoner);
+			Global.instance.EmitSignal("AlertGuards", (character as Guard)._targetPrisoner.GlobalPosition, (character as Guard)._targetPrisoner);
 			(character as Guard).state = Guard.GuardStates.Chase;
 		}
 	}
