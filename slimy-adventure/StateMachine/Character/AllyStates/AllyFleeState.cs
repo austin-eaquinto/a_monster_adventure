@@ -12,7 +12,7 @@ public partial class AllyFleeState : CharacterState
 	public NavigationAgent2D navAgent { get; set;} = null;
 	[Export]
 	public RayCast2D rayCast2D {get; set;} = null;
-	private Line2D line = null;
+	// private Line2D line = null;
 
 	public override bool EvaluateStateCondition()
     {
@@ -24,9 +24,9 @@ public partial class AllyFleeState : CharacterState
 	public override void _Ready()
 	{
 
-		line = new Line2D();
-		AddChild(line);
-		line.Width = 1.0f;
+		// line = new Line2D();
+		// AddChild(line);
+		// line.Width = 1.0f;
 
 		
 		idleTimer = new Timer();
@@ -43,6 +43,7 @@ public partial class AllyFleeState : CharacterState
 		base.Enter();
 		idleTimer.Start();
 		findFleePath();
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()
@@ -129,7 +130,7 @@ public partial class AllyFleeState : CharacterState
 
 		rayCast2D.Position = Vector2.Zero;
 
-		line.Points = linePoints.ToArray();
+		// line.Points = linePoints.ToArray();
 
 		if (!navAgent.IsTargetReachable() && iteration < 3) findFleePath(iteration+1);
 		if (!idleTimer.IsStopped()) idleTimer.Stop();
