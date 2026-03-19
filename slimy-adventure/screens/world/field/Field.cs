@@ -8,10 +8,10 @@ public partial class Field : Node2D
 
     public override void _Ready()
     {
-        bridgesBellow = GetNode<TileMapLayer>("environment/TileMap/BridgesBellow");
-        bridgesAbove = GetNode<TileMapLayer>("environment/TileMap/BridgesAbove");
+        bridgesBellow = GetNode<TileMapLayer>("BridgesBellow");
+        bridgesAbove = GetNode<TileMapLayer>("BridgesAbove");
 
-        var layerSwitches = GetTree().GetNodesInGroup("layer_switch");
+        var layerSwitches = GetTree().GetNodesInGroup("BridgeSensor");
 
         foreach (Node node in layerSwitches)
         {
