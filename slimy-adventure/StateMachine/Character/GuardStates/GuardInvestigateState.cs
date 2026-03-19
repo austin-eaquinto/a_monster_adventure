@@ -23,6 +23,7 @@ public partial class GuardInvestigateState : CharacterState
 		base.Enter();
 		navAgent.TargetPosition = (character as Guard).investigatePos;
 		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
+		if (character != null) (character as Character).animation_name = "walk_";
 	}
 
     public override void Exit()
@@ -51,6 +52,7 @@ public partial class GuardInvestigateState : CharacterState
 
 	protected virtual void SearchForPlayer()
 	{
+		
 		bool seesPrisoner = (character as Guard).GuardSeesPrisoner((character as Guard)._targetPrisoner);
 		if (!seesPrisoner) seesPrisoner = (character as Guard).GuardSeesNewTargetPrisoner();
 

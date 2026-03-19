@@ -36,6 +36,11 @@ public partial class Guard : Character
 
 		foreach (Character prisoner in GetTree().GetNodesInGroup("Prisoner"))
 		{
+			
+			if (!prisonerExists(prisoner))
+			{
+				continue;
+			}
 			if (GuardSeesPrisoner(prisoner))
 			{
 				return true;
@@ -46,16 +51,38 @@ public partial class Guard : Character
 	}
 
 	public Character _targetPrisoner;
+	public bool prisonerExists(Character prisoner)
+	{
+		if (prisoner != null)
+		{
+			if (IsInstanceValid(prisoner))
+			{
+				if (prisoner.IsInsideTree())
+				{
+					return true;
+				}
+			}
+			
+		}
+		
+		if (prisoner == _targetPrisoner) _targetPrisoner = null;
+		return false;
+	}
+
 	public Vector2 investigatePos = Vector2.Zero;
 	public bool GuardSeesNewTargetPrisoner()
 	{
-
 		Character closestSeenPrisoner = null;
 		float closestPrisonerDistance = 999.9f;
 
 		foreach (Character prisoner in GetTree().GetNodesInGroup("Prisoner"))
 		{
-			GD.Print(prisoner);
+
+			if (!prisonerExists(prisoner))
+			{
+				continue;
+			}
+
 			if (GuardSeesPrisoner(prisoner))
 			{
 				float prisonerDistance = (GlobalPosition - prisoner.GlobalPosition).Length();
@@ -81,7 +108,7 @@ public partial class Guard : Character
 
 	public bool GuardSeesPrisoner(Character prisoner)
 	{
-		if (prisoner == null)
+		if (!prisonerExists(prisoner))
 		{
 			return false;
 		}

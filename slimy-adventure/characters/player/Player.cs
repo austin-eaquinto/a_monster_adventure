@@ -4,6 +4,8 @@ using System;
 
 public partial class Player : Character
 {
+	[Export]
+	public Camera2D camera {get;set;} = null;
 
 	[Export]
 	public StateCondition abilitiesStateBranch {get; set;} = null;
@@ -34,4 +36,19 @@ public partial class Player : Character
 		}
 	}
 
+	public Camera2D getCamera()
+	{
+		return camera;
+	}
+
+	public void PrepareFree()
+	{
+		Global.Instance.player = null;
+
+		foreach (Ally ally in followingAllies)
+		{
+			removeAlly(ally);
+			ally.state = Ally.AllyStates.Flee;
+		}
+	}
 }

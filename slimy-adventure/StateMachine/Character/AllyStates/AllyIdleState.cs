@@ -34,7 +34,7 @@ public partial class AllyIdleState : CharacterState
 		}
 		else
 		{
-			(character as Ally).state = Ally.AllyStates.Follow;
+			(character as Ally).state = Ally.AllyStates.PerfectFollow;
 		}
 	}
 
@@ -46,6 +46,7 @@ public partial class AllyIdleState : CharacterState
 		(character as Character).velocity = Vector2.Zero;
 		player = (character as Ally).getPlayer();
 		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareFlee"));
+		if (character != null) (character as Character).animation_name = "idle_";
 
 	}
 
