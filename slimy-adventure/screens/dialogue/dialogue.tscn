@@ -71,7 +71,7 @@ theme_override_constants/line_spacing = 10
 theme_override_constants/paragraph_spacing = 1
 theme_override_fonts/font = ExtResource("1_ucaao")
 theme_override_font_sizes/font_size = 33
-text = "Text! The quick brown fox jumped over the lazy dog. This is Placeholder Text. I needed a third line now"
+text = "Text! The quick brown fox jumped over the lazy dog. This is Placeholder Text. If you see it, its wrong..."
 autowrap_mode = 2
 
 [node name="End" type="Label" parent="TextboxContainer/Panel/MarginContainer/HBoxContainer"]

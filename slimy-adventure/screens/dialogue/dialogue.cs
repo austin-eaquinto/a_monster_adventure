@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Dialogue : CanvasLayer
 {
@@ -12,6 +13,10 @@ public partial class Dialogue : CanvasLayer
 	private enum State { READY, READING, FINISHED };
 	private State currentState = State.READY;
 	
+	private Queue<string> dialogueQueue = new Queue<string>();
+	
+	private Tween tween;
+	
 	public override void _Ready() {
 		textboxContainer = GetNode<MarginContainer>("TextboxContainer");
 		startSymbol = GetNode<Label>("TextboxContainer/Panel/MarginContainer/HBoxContainer/Start");
@@ -21,17 +26,30 @@ public partial class Dialogue : CanvasLayer
 		GD.Print("Starting State: State.READY");
 		
 		HideTextbox();
-		AddText("This text is going to be added!");
+		QueueText("This is the first line of text! Adding more lines so that it takes more time to finish.");
+		QueueText("This is the second line of text! Adding more lines so that it takes more time to finish.");
+		QueueText("This is the third line of text! Adding more lines so that it takes more time to finish.");
+		QueueText("This is the fourth line of text! Adding more lines so that it takes more time to finish.");
+
 	}
 
 	public override void _Process(double delta) {
 		switch (currentState) {
 			case State.READY: 
+				if (dialogueQueue.Count != 0) {
+					DisplayText();
+				}
 				break;
 			case State.READING:
+				if (Input.IsActionJustPressed("ui_accept")) {
+					label.VisibleRatio = 1.0f;
+					StopTween();
+					endSymbol.Text = "v";
+					ChangeState(State.FINISHED);
+				}
 				break;
 			case State.FINISHED:
-				if (Input.IsActionPressed("ui_accept")) 
+				if (Input.IsActionJustPressed("ui_accept")) 
 				{
 					ChangeState(State.READY);
 					HideTextbox();
@@ -39,6 +57,10 @@ public partial class Dialogue : CanvasLayer
 				break;
 					
 		}
+	}
+	
+	public void QueueText(string nextText) {
+		dialogueQueue.Enqueue(nextText);
 	}
 	
 	public void HideTextbox() {
@@ -53,14 +75,14 @@ public partial class Dialogue : CanvasLayer
 		textboxContainer.Show();
 	}
 	
-	public void AddText(string nextText) {
+	public void DisplayText() {
+		string nextText = dialogueQueue.Dequeue();
 		label.Text = nextText;
+		label.VisibleRatio = 0.0f;
 		ChangeState(State.READING);
 		ShowTextbox();
 		
-		var tween = CreateTween();
-		tween.TweenProperty(label, "visible_ratio", 1.0f, nextText.Length * CHAR_READ_RATE).From(0.0f);
-		tween.Finished += OnTweenFinished;
+		StartTween(nextText);
 	}
 	
 	private void OnTweenFinished(){
@@ -80,6 +102,30 @@ public partial class Dialogue : CanvasLayer
 			case State.FINISHED:
 				GD.Print("Changing to: State.FINISHED");
 				break;
+		}
+	}
+	
+	private void StartTween(string nextText){
+		// Kill existing tween if it exists
+		if (tween != null && tween.IsRunning()) {
+			tween.Kill();
+		}
+
+		tween = CreateTween();
+
+		tween.TweenProperty(
+			label,
+			"visible_ratio",
+			1.0f,
+			nextText.Length * CHAR_READ_RATE
+		).From(0.0f);
+
+		tween.Finished += OnTweenFinished;
+	}
+	
+	private void StopTween() {
+		if (tween != null && tween.IsRunning()){
+			tween.Kill();
 		}
 	}
 }
