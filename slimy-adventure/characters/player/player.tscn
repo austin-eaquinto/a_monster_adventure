@@ -854,19 +854,18 @@ radius = 7.0
 height = 32.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("abilitiesStateBranch") groups=["Prisoner"]]
-position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_j31ep")
 abilitiesStateBranch = NodePath("CharacterStateHandler/AbilityBranch")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_j6q74")
 animation = &"hurt_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
