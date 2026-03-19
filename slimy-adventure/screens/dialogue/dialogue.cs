@@ -1,50 +1,85 @@
 using Godot;
 using System;
 
-// Text file: "res://screens/textbox/text.json"
-
-public partial class Textbox : Control
+public partial class Dialogue : CanvasLayer
 {
-	List dialogue = new List<>();
-	int current_dialogue_index = 0;
-	enum States 
-	{
-		IDLE, 
-		STARTING, 
-		WORLD, 
-		ENDING
-	};
-	States state = States.IDLE;
+	private double CHAR_READ_RATE = 0.02;
+	private MarginContainer textboxContainer;
+	private Label startSymbol;
+	private Label endSymbol;
+	private Label label;
 	
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+	private enum State { READY, READING, FINISHED };
+	private State currentState = State.READY;
+	
+	public override void _Ready() {
+		textboxContainer = GetNode<MarginContainer>("TextboxContainer");
+		startSymbol = GetNode<Label>("TextboxContainer/Panel/MarginContainer/HBoxContainer/Start");
+		endSymbol = GetNode<Label>("TextboxContainer/Panel/MarginContainer/HBoxContainer/End");
+		label = GetNode<Label>("TextboxContainer/Panel/MarginContainer/HBoxContainer/Label");
 		
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		GD.Print("Starting State: State.READY");
 		
+		HideTextbox();
+		AddText("This text is going to be added!");
 	}
-	
-	private void set_state(int new_state)
-	{
-		States previous_state = state;
-		state = new_state;
-	}
-	
-	private void load_text()
-	{
-		string path = "res://screens/textbox/text.json";
 
-		// In Godot C#, you'd typically still use FileAccess
-		var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
-
-		{
-			string content = file.GetAsText();
-			file.Close();
-	}
+	public override void _Process(double delta) {
+		switch (currentState) {
+			case State.READY: 
+				break;
+			case State.READING:
+				break;
+			case State.FINISHED:
+				if (Input.IsActionPressed("ui_accept")) 
+				{
+					ChangeState(State.READY);
+					HideTextbox();
+				}
+				break;
+					
+		}
 	}
 	
+	public void HideTextbox() {
+		startSymbol.Text = "";
+		endSymbol.Text = "";
+		label.Text = "";
+		textboxContainer.Hide();
+	}
+	
+	public void ShowTextbox() {
+		startSymbol.Text = "*";
+		textboxContainer.Show();
+	}
+	
+	public void AddText(string nextText) {
+		label.Text = nextText;
+		ChangeState(State.READING);
+		ShowTextbox();
+		
+		var tween = CreateTween();
+		tween.TweenProperty(label, "visible_ratio", 1.0f, nextText.Length * CHAR_READ_RATE).From(0.0f);
+		tween.Finished += OnTweenFinished;
+	}
+	
+	private void OnTweenFinished(){
+		endSymbol.Text = "v";
+		ChangeState(State.FINISHED);
+	}
+	
+	private void ChangeState(State nextState) {
+		currentState = nextState;
+		switch (currentState) {
+			case State.READY: 
+				GD.Print("Changing to: State.READY");
+				break;
+			case State.READING:
+				GD.Print("Changing to: State.READING");
+				break;
+			case State.FINISHED:
+				GD.Print("Changing to: State.FINISHED");
+				break;
+		}
+	}
 }

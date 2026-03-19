@@ -1,52 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://badnen7grpksc"]
+[gd_scene load_steps=4 format=3 uid="uid://badnen7grpksc"]
 
-[ext_resource type="Script" uid="uid://d3lv0wcauixk" path="res://screens/dialogue/dialogue.cs" id="1_crj2x"]
+[ext_resource type="Script" uid="uid://crj5jxguimeem" path="res://screens/dialogue/Dialogue.cs" id="1_le2n7"]
+[ext_resource type="FontFile" uid="uid://dqrnbf7dfsfw1" path="res://art/fonts/ThaleahFat.ttf" id="1_ucaao"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_crj2x")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_le2n7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-layout_mode = 1
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_le2n7")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 90.0
-offset_top = -182.0
-offset_right = -80.0
-offset_bottom = -39.0
+offset_top = -186.0
 grow_horizontal = 2
 grow_vertical = 0
-patch_margin_left = 50
-patch_margin_right = 50
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 20
 
-[node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_le2n7")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 992.0
-offset_top = 607.0
-offset_right = 1071.0
-offset_bottom = 638.0
-text = "Continue"
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/Panel/MarginContainer"]
+layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 205.0
-offset_top = 476.0
-offset_right = 957.0
-offset_bottom = 602.0
-text = "This is the placeholder text, replace it with custom text for each scene. "
+[node name="Start" type="Label" parent="TextboxContainer/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 10
+theme_override_constants/paragraph_spacing = 1
+theme_override_fonts/font = ExtResource("1_ucaao")
+theme_override_font_sizes/font_size = 40
+text = "*"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="TextboxContainer/Panel/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_constants/line_spacing = 10
+theme_override_constants/paragraph_spacing = 1
+theme_override_fonts/font = ExtResource("1_ucaao")
+theme_override_font_sizes/font_size = 33
+text = "Text! The quick brown fox jumped over the lazy dog. This is Placeholder Text. I needed a third line now"
+autowrap_mode = 2
+
+[node name="End" type="Label" parent="TextboxContainer/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/line_spacing = 10
+theme_override_constants/paragraph_spacing = 1
+theme_override_fonts/font = ExtResource("1_ucaao")
+theme_override_font_sizes/font_size = 35
+text = "v"
+horizontal_alignment = 1
