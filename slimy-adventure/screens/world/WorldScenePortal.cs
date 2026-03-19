@@ -17,13 +17,14 @@ public partial class WorldScenePortal : Area2D
 	}
 
 	public async void onBodyEntered(Node2D body)
-	{
-		if (body == Global.Instance.player)
-		{
-			Global.Instance.SaveGame();	// save the progress before leaving the current scene
-			await changeScene();
-		}
-	}
+{
+    // body is Player works if the script is [GlobalClass]
+    // body.IsInGroup("Player") works if you added the player to that group
+    if (body is Player || body.IsInGroup("Player"))
+    {
+        await changeScene();
+    }
+}
 
 	public async Task changeScene()
 	{

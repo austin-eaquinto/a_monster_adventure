@@ -11,13 +11,13 @@ public partial class LoadingScreen : Control
 
 	private void OnTimerTimeout()
 	{
-		var global = GetNode<Global>("/root/Global");
+		// CRITICAL: Stop the timer so it doesn't fire again while the scene is changing
+		GetNode<Timer>("LoadingTimer").Stop();
 
-		string finalScene = global.NextScene;
-
-		if(!string.IsNullOrEmpty(finalScene))
+		var global = Global.Instance;
+		if (!string.IsNullOrEmpty(global.NextScene))
 		{
-			GetTree().ChangeSceneToFile(finalScene);
+			GetTree().ChangeSceneToFile(global.NextScene);
 		}
 	}
 

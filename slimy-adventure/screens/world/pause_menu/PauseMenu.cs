@@ -14,38 +14,47 @@ public partial class PauseMenu : CanvasLayer
 
     public override void _Ready()
     {
-       var resumeButton = GetNode<Button>("VBoxContainer/Resume");
-       var quiteButton = GetNode<Button>("VBoxContainer/Quit");
+        var resumeButton = GetNode<Button>("VBoxContainer/Resume");
+        var saveButton = GetNode<Button>("VBoxContainer/Save");
+        var quiteButton = GetNode<Button>("VBoxContainer/Quit");
+        var loadButton = GetNode<Button>("VBoxContainer/Load");
 
-       resumeButton.Pressed += OnResumePressed;
-       quiteButton.Pressed += OnQuitPressed;
+        resumeButton.Pressed += OnResumePressed;
+        quiteButton.Pressed += OnQuitPressed;
 
-       // Inside PauseMenu.cs _Ready or similar
-        var saveButton = GetNode<Button>("VBoxContainer/Save"); // Assuming you add this button
-        saveButton.Pressed += () => {
+        if (saveButton != null)
+        {
+            saveButton.Pressed += () => {
             Global.Instance.SaveGame();
-        };
+            GD.Print("Manual Save Successful");
+            };
+        }
 
-        // var loadButton = GetNode<Button>("VBoxContainer/Load");
-        // loadButton.Pressed += () => {
-        //     GetTree().Paused = false; // Unpause before loading
-        //     this.Visible = false;
-        //     Global.Instance.LoadGame();
-        // };
+        if (loadButton != null)
+        {
+            loadButton.Pressed += () => {
+                GetTree().Paused = false; 
+                this.Visible = false;
+                Global.Instance.LoadGame();
+            };
+        }
+
     }
 
     public void OnResumePressed()
     {
         GetTree().Paused = false;
         this.Visible = false;
+        GD.Print("Resume button pressed.");
     }
 
-    public async void OnQuitPressed()
+    public void OnQuitPressed()
     {
-        GetTree().Paused = false;
+        GD.Print("Quit button pressed.");
+        
+        // Hide the menu and trigger the global transition
         this.Visible = false;
-        Global.Instance.NextScene = "res://screens/main_menu/main_menu.tscn";
-        await Global.Instance.TransitionScene("LoadingScreen");
+        Global.Instance.TransitionScene("MainMenu");
     }
 
     public override void _Process(double delta)

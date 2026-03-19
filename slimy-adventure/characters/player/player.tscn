@@ -853,7 +853,7 @@ animations = [{
 radius = 7.0
 height = 32.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("abilitiesStateBranch") groups=["Prisoner"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("abilitiesStateBranch") groups=["Player", "Prisoner"]]
 position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_j31ep")
