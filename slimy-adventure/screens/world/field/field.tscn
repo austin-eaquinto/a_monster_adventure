@@ -4098,7 +4098,7 @@ size = Vector2(15, 7.5)
 size = Vector2(17, 8.5)
 
 [node name="Node2D" type="Node2D"]
-scale = Vector2(2, 2)
+scale = Vector2(3.6, 3.6)
 
 [node name="floor" type="TileMapLayer" parent="."]
 position = Vector2(304, -64)
