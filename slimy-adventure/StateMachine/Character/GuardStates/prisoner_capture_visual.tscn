@@ -28,5 +28,3 @@ remote_path = NodePath("../../CageBack")
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="CagePosNode"]
 remote_path = NodePath("../../CageFront")
-
-[node name="Camera2D" type="Camera2D" parent="."]
