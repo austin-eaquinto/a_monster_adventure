@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://daj0rapuafeb3" path="res://characters/player/CameraLimitMarker.cs" id="7_lb3c3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uyt2b"]
-vertices = PackedVector2Array(1088.8984, 704.3672, 508.8672, 552, 808, 552, 1096.0703, 296, 808, 296, -987.10156, 24, -989.1094, -24, -280, -24, -280, 24, 600, -344, 600, -168, 424, -168, 424, -232, 744, -24, 744, -88, 920, -88, 920, 88, 744, 88, 744, 24, 280, -24, 280, 24, 424, 232, 424, 168, 600, 168, 600, 344, 424, 344, 424, 280, 280, 232, -280, 280, 280, -232, -280, -280, 424, -280, 424, -344, -488, 290.1172, -709.27344, 232, -488, 232, -488, -232, -721.3594, -232, -488, -295.3672, 808, -552, 456.9922, -552, 1114.0703, -730.4375, 1106.4531, -296, 808, -296)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(16, 17, 18), PackedInt32Array(13, 16, 18), PackedInt32Array(19, 13, 18, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(24, 25, 26), PackedInt32Array(21, 24, 26), PackedInt32Array(27, 21, 26, 28), PackedInt32Array(27, 28, 8, 20), PackedInt32Array(19, 20, 8, 7), PackedInt32Array(29, 19, 7, 30), PackedInt32Array(29, 30, 31, 12), PackedInt32Array(9, 12, 31), PackedInt32Array(9, 31, 32), PackedInt32Array(33, 34, 35), PackedInt32Array(36, 37, 38), PackedInt32Array(39, 40, 41), PackedInt32Array(39, 41, 42, 43)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1036, -188, 1155, -783, 1128, 756, -1019, 192)])
+vertices = PackedVector2Array(600, -344, 600, -168, 424, -168, 424, -232, 744, -24, 744, -88, 920, -88, 920, 88, 744, 88, 744, 24, 280, -24, 280, 24, 424, 232, 424, 168, 600, 168, 600, 344, 424, 344, 424, 280, 280, 232, -280, 280, -280, 24, -280, -24, -918, 24, -918, -24, 280, -232, -280, -280, 424, -280, 424, -344)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 8, 9), PackedInt32Array(4, 7, 9), PackedInt32Array(10, 4, 9, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(15, 16, 17), PackedInt32Array(12, 15, 17), PackedInt32Array(18, 12, 17, 19), PackedInt32Array(18, 19, 20, 11), PackedInt32Array(10, 11, 20, 21), PackedInt32Array(20, 22, 23, 21), PackedInt32Array(24, 10, 21, 25), PackedInt32Array(24, 25, 26, 3), PackedInt32Array(0, 3, 26), PackedInt32Array(0, 26, 27)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-958, -447, 1026, -447, 1028, 457, -958, 446)])
 agent_radius = 40.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tulln"]
@@ -83,7 +83,7 @@ allyId = 2
 metadata/_custom_type_script = "uid://d0k05kwyvlx37"
 
 [node name="PlayerInstantiator" type="Node2D" parent="Y-Sort" node_paths=PackedStringArray("allySpawnNode2d")]
-position = Vector2(-380, 0)
+position = Vector2(-444, 0)
 script = ExtResource("5_xsbjg")
 allySpawnNode2d = NodePath("AllySpawn")
 metadata/_custom_type_script = "uid://q8ir443rjxtp"
