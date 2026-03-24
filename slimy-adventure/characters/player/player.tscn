@@ -362,7 +362,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jxqw"]
 radius = 7.0
-height = 20.000002
+height = 40.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "abilitiesStateBranch") groups=["Prisoner"]]
 collision_mask = 3
@@ -373,17 +373,19 @@ abilitiesStateBranch = NodePath("CharacterStateHandler/AbilityBranch")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j6q74")
 animation = &"idle_up"
 frame_progress = 0.12845713
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, -3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("4_idpv6")
 
