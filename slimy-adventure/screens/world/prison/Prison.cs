@@ -24,8 +24,8 @@ public partial class Prison : Area2D
 
 	private async void Escape()
 	{
-		Global.Instance.NextScene = NextScenePath;
-		await Global.Instance.TransitionScene("LoadingScreen");
+		// Point to the key in sceneDict, e.g., "Field" (make sure "Field" is in your sceneDict!)
+		await Global.Instance.TransitionScene("Field"); 
 		_isPlayerNearby = false;
 		GD.Print("Slime is trying to escape");
 	}
