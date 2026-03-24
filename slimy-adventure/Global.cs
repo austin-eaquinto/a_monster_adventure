@@ -9,6 +9,13 @@ public partial class Global : Node
 	public static Global Instance { get; private set; }
 	public Player player {get; set;}
 
+	// Camera ///////////////////////////////////////////////////
+    private Vector2[] cameraLimits = [new Vector2(-10000000,-10000000),new Vector2(10000000,10000000)];
+    public void setCameraLimits(Vector2 cameraLimit, int i) {cameraLimits[i] = cameraLimit;}
+    public void setCameraLimits(Vector2 cameraTopLeftLimit, Vector2 cameraBottomRightLimit) {cameraLimits = [cameraTopLeftLimit,cameraBottomRightLimit];}
+    public (Vector2,Vector2) getCameraLimits(){return (cameraLimits[0],cameraLimits[1]);}
+    // Camera ////////////////////////////////////////////////////
+
 	[Signal]
 	public delegate void AlertGuardsEventHandler(Vector2 alertPosition, Character spottedPrisoner);
 
