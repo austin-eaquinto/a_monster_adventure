@@ -20,8 +20,8 @@ public partial class Global : Node
 	public delegate void AlertGuardsEventHandler(Vector2 alertPosition, Character spottedPrisoner);
 
 	public Dictionary<int,Dictionary<string,Variant>> allyDict = new Dictionary<int,Dictionary<string,Variant>>
-        {
-            { 0, new Dictionary<string, Variant>
+		{
+			{ 0, new Dictionary<string, Variant>
 				{
 					{"isFollowing", false},
 					{"isImprisoned", true},
@@ -30,7 +30,7 @@ public partial class Global : Node
 					{"allyScene", "res://characters/allies/ghost_ally.tscn"}
 				} 
 			},
-            { 1, new Dictionary<string, Variant>
+			{ 1, new Dictionary<string, Variant>
 				{
 					{"isFollowing", false},
 					{"isImprisoned", true},
@@ -39,7 +39,7 @@ public partial class Global : Node
 					{"allyScene", "res://characters/allies/spider_ally.tscn"}
 				} 
 			},
-            { 2, new Dictionary<string, Variant>
+			{ 2, new Dictionary<string, Variant>
 				{
 					{"isFollowing", false},
 					{"isImprisoned", true},
@@ -48,14 +48,14 @@ public partial class Global : Node
 					{"allyScene", "res://characters/allies/ally.tscn"}
 				} 
 			}
-        };
+		};
 	
 	public Dictionary<string,string> sceneDict = new Dictionary<string, string>
 	{
-    	["NA"] = "",
-    	["LoadingScreen"] = "res://screens/loading/loading_screen.tscn",
-    	["GuardTest"] = "res://screens/world/testing_levels/guard_test_scene.tscn",
-    	["AllyTest"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
+		["NA"] = "",
+		["LoadingScreen"] = "res://screens/loading/loading_screen.tscn",
+		["GuardTest"] = "res://screens/world/testing_levels/guard_test_scene.tscn",
+		["AllyTest"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
 		["Prison"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
 	};
 
