@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dkwpxg6uhqrid"]
+[gd_scene load_steps=14 format=4 uid="uid://dkwpxg6uhqrid"]
 
 [ext_resource type="Texture2D" uid="uid://cqgnxeek3v224" path="res://icon.svg" id="1_hqq01"]
 [ext_resource type="Texture2D" uid="uid://b6bqro0uqen65" path="res://art/Yes.png" id="2_143ns"]
@@ -14,16 +14,20 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-935, -867, 2596, -825, 2693, 1254, -921, 1169)])
 agent_radius = 40.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tulln"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hqq01"]
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_143ns"]
 polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tulln"]
 texture = ExtResource("2_143ns")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
-0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_tulln")
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_hqq01")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_143ns")
 
 [sub_resource type="TileSet" id="TileSet_385bc"]
 tile_size = Vector2i(8, 8)
