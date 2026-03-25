@@ -365,7 +365,7 @@ radius = 7.0
 height = 40.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "abilitiesStateBranch") groups=["Prisoner"]]
-collision_mask = 3
+y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_j31ep")
 camera = NodePath("Camera2D")
@@ -385,7 +385,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(0.28, 0.28)
 position_smoothing_enabled = true
 script = ExtResource("4_idpv6")
 
