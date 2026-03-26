@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://xwkkg3a7hp2x"]
+[gd_scene load_steps=15 format=4 uid="uid://xwkkg3a7hp2x"]
 
 [ext_resource type="PackedScene" uid="uid://mgnrp1qhc7em" path="res://characters/player/player.tscn" id="1_cbd4q"]
 [ext_resource type="Texture2D" uid="uid://dogl8yufs5y1" path="res://art/fieldAssets/House_Tileset.png" id="1_kviv6"]
 [ext_resource type="Texture2D" uid="uid://m3nk3qmkkdk3" path="res://screens/world/prison/assets/fixtures_BA.png" id="3_kviv6"]
 [ext_resource type="Script" uid="uid://68glk2ob551t" path="res://screens/world/prison/Prison.cs" id="3_ptmdg"]
+[ext_resource type="Script" uid="uid://daj0rapuafeb3" path="res://characters/player/CameraLimitMarker.cs" id="5_livxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_livxo"]
 texture = ExtResource("1_kviv6")
@@ -781,3 +782,14 @@ position = Vector2(0, 4)
 texture = ExtResource("3_kviv6")
 region_enabled = true
 region_rect = Rect2(160.5, 10, 32, 57)
+
+[node name="CameraLimitMarker" type="Node2D" parent="."]
+position = Vector2(-79, -82)
+script = ExtResource("5_livxo")
+metadata/_custom_type_script = "uid://daj0rapuafeb3"
+
+[node name="CameraLimitMarker2" type="Node2D" parent="."]
+position = Vector2(1182, 630)
+script = ExtResource("5_livxo")
+limitType = 1
+metadata/_custom_type_script = "uid://daj0rapuafeb3"
