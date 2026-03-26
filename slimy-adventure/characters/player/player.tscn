@@ -383,7 +383,6 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1jxqw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="CharacterStateHandler" type="Node" parent="."]

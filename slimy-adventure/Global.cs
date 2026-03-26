@@ -50,6 +50,7 @@ public partial class Global : Node
     	["GuardTest"] = "res://screens/world/testing_levels/guard_test_scene.tscn",
     	["AllyTest"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
 		["Prison"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
+		["Field"] = "res://screens/world/field/field.tscn",
 	};
 
 	public string NextScene = "";
