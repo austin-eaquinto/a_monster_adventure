@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
+[GlobalClass]
 public partial class WorldScenePortal : Area2D
 {
 
