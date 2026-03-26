@@ -9,12 +9,19 @@ public partial class Global : Node
 	public static Global Instance { get; private set; }
 	public Player player {get; set;}
 
+	// Camera ///////////////////////////////////////////////////
+    private Vector2[] cameraLimits = [new Vector2(-10000000,-10000000),new Vector2(10000000,10000000)];
+    public void setCameraLimits(Vector2 cameraLimit, int i) {cameraLimits[i] = cameraLimit;}
+    public void setCameraLimits(Vector2 cameraTopLeftLimit, Vector2 cameraBottomRightLimit) {cameraLimits = [cameraTopLeftLimit,cameraBottomRightLimit];}
+    public (Vector2,Vector2) getCameraLimits(){return (cameraLimits[0],cameraLimits[1]);}
+    // Camera ////////////////////////////////////////////////////
+
 	[Signal]
 	public delegate void AlertGuardsEventHandler(Vector2 alertPosition, Character spottedPrisoner);
 
 	public Dictionary<int,Dictionary<string,Variant>> allyDict = new Dictionary<int,Dictionary<string,Variant>>
-        {
-            { 0, new Dictionary<string, Variant>
+		{
+			{ 0, new Dictionary<string, Variant>
 				{
 					{"isFollowing", false},
 					{"isImprisoned", true},
@@ -23,7 +30,7 @@ public partial class Global : Node
 					{"allyScene", "res://characters/allies/ghost_ally.tscn"}
 				} 
 			},
-            { 1, new Dictionary<string, Variant>
+			{ 1, new Dictionary<string, Variant>
 				{
 					{"isFollowing", false},
 					{"isImprisoned", true},
@@ -32,7 +39,7 @@ public partial class Global : Node
 					{"allyScene", "res://characters/allies/spider_ally.tscn"}
 				} 
 			},
-            { 2, new Dictionary<string, Variant>
+			{ 2, new Dictionary<string, Variant>
 				{
 					{"isFollowing", false},
 					{"isImprisoned", true},
@@ -41,7 +48,7 @@ public partial class Global : Node
 					{"allyScene", "res://characters/allies/ally.tscn"}
 				} 
 			}
-        };
+		};
 	
 	public Dictionary<string,string> sceneDict = new Dictionary<string, string>
 	{
@@ -49,8 +56,8 @@ public partial class Global : Node
     	["LoadingScreen"] = "res://screens/loading/loading_screen.tscn",
     	["GuardTest"] = "res://screens/world/testing_levels/guard_test_scene.tscn",
     	["AllyTest"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
-		["Prison"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
 		["Field"] = "res://screens/world/field/field.tscn",
+		["Prison"] = "res://screens/world/prison/prison.tscn",
 	};
 
 	public string NextScene = "";

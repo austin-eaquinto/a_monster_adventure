@@ -16,7 +16,7 @@ public partial class Prison : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(_isPlayerNearby && Input.IsActionJustPressed("ui_accept"))
+		if(_isPlayerNearby && Input.IsActionJustPressed("interact"))
 		{
 			Escape();
 		}
