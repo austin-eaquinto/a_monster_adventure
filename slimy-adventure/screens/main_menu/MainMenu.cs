@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 public partial class MainMenu : Control
 {
 	private async void _on_new_game_pressed()
-{
-    // Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
-    // await Global.Instance.TransitionScene("LoadingScreen");
-	await Global.Instance.TransitionWorldScene("Prison", 0);
-}
+	{
+		// Old merge
+		// Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
+		// await Global.Instance.TransitionScene("LoadingScreen");
+		// await Global.Instance.TransitionWorldScene("Prison", 0);
+
+		// new merge
+		Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
+		await Global.Instance.TransitionWorldScene("Prison",0);
+	}
 
 	private void _on_load_game_pressed()
 	{
