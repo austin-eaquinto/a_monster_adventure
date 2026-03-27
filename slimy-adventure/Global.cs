@@ -12,6 +12,7 @@ public partial class Global : Node
 	public Vector2 CurrentZoom { get; set; } = new Vector2(1.0f, 1.0f);
 	public bool IsLoadingFromSave { get; private set; } = false;
     private TaskCompletionSource<bool> _transitionTask;
+	private int targetInstantiatorId = 0;
 
 	// Camera ///////////////////////////////////////////////////
     private Vector2[] cameraLimits = [new Vector2(-10000000,-10000000),new Vector2(10000000,10000000)];
@@ -81,7 +82,8 @@ public partial class Global : Node
 		currentSceneName = sceneName;
 
 		_transitionTask = new TaskCompletionSource<bool>();
-		GetTree().ChangeSceneToFile(sceneDict["LoadingScreen"]);
+		// GetTree().ChangeSceneToFile(sceneDict["LoadingScreen"]);
+		GetTree().ChangeSceneToFile(NextScene);
 
 		await _transitionTask.Task;
 
@@ -101,10 +103,11 @@ public partial class Global : Node
 	}
 
 	public async Task TransitionWorldScene(string sceneName, int playerInstantiatorId)
-    {
-        CurrentZoom = (sceneName == "Field") ? new Vector2(0.8f, 0.8f) : new Vector2(1.0f, 1.0f);
-        await TransitionScene(sceneName);
-    }
+	{
+		targetInstantiatorId = playerInstantiatorId; // Store the ID
+		CurrentZoom = (sceneName == "Field") ? new Vector2(0.8f, 0.8f) : new Vector2(1.0f, 1.0f);
+		await TransitionScene(sceneName);
+	}
 
 	public void DoPlayerInstantiation(int playerInstantiatorId)
 	{
@@ -158,7 +161,7 @@ public partial class Global : Node
 		if (isWorld)
 		{
 			// Only instantiate player/allies if it's a world scene
-			CallDeferred(nameof(DoPlayerInstantiation), 0);
+			CallDeferred(nameof(DoPlayerInstantiation), targetInstantiatorId);
 		}
 
 		// 2. Resolve the transition task regardless of scene type

@@ -11,12 +11,16 @@ public partial class LoadingScreen : Control
 
 	private void OnTimerTimeout()
 	{
-		// CRITICAL: Stop the timer so it doesn't fire again while the scene is changing
+		// Safety check: if the node is being removed, don't try to access the tree
+		if (!IsInsideTree()) return;
+
 		GetNode<Timer>("LoadingTimer").Stop();
 
 		var global = Global.Instance;
 		if (!string.IsNullOrEmpty(global.NextScene))
 		{
+			// ChangeSceneToFile is technically a deferred action anyway, 
+			// but checking IsInsideTree() prevents the crash.
 			GetTree().ChangeSceneToFile(global.NextScene);
 		}
 	}
