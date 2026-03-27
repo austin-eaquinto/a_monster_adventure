@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class SaveData
 {
     public string CurrentSceneName { get; set; }
-    public float ZoomX { get; set; }
-    public float ZoomY { get; set; }
+    // public float ZoomX { get; set; }
+    // public float ZoomY { get; set; }
     // Store the player's last known position so they don't always reset to the instantiator's default
     public float PlayerPosX { get; set; }
     public float PlayerPosY { get; set; }

@@ -23,7 +23,8 @@ public partial class WorldScenePortal : Area2D
     // body.IsInGroup("Player") works if you added the player to that group
     if (body is Player || body.IsInGroup("Player"))
     {
-        await changeScene();
+        // Defer the call to ensure physics finishes first
+        CallDeferred(nameof(changeScene));
     }
 }
 
