@@ -3569,16 +3569,6 @@ scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAyAC8AAAAFAAcAAAAyADAAAAAFAAgAAQAyADEAAAAFAAgAAAAyADIAAAAFAAgAAAAyADMAAAAFAAgAAAAyADQAAAAFAAgAAwAyADUAAAAFAAkAAAAzAC8AAAAGAAcAAAAzADAAAAAGAAgAAAAzADEAAAAGAAgAAAAzADIAAAAGAAgAAAAzADMAAAAGAAgAAAAzADQAAAAGAAgAAAAzADUAAAAGAAkAAAA0AC8AAAAHAAcAAAA0ADAAAAAHAAgAAQA0ADEAAAAHAAgAAAA0ADIAAAAHAAgAAAA0ADMAAAAHAAgAAAA0ADQAAAAHAAgAAwA0ADUAAAAHAAkAAAA=")
 tile_set = SubResource("TileSet_guacd")
 
-[node name="BridgeLinkTop" type="NavigationLink2D" parent="BridgeNavRegion"]
-position = Vector2(3297, 3221)
-navigation_layers = 3
-start_position = Vector2(0, -200)
-
-[node name="BridgeLinkBottom" type="NavigationLink2D" parent="BridgeNavRegion"]
-position = Vector2(3297, 3221)
-navigation_layers = 3
-start_position = Vector2(0, 200)
-
 [node name="Guard" parent="." node_paths=PackedStringArray("line2D") instance=ExtResource("13_7mlya")]
 y_sort_enabled = true
 position = Vector2(4520, 1597)
