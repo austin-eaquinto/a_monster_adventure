@@ -216,8 +216,8 @@ public partial class Global : Node
 			var data = new SaveData
 			{
 				CurrentSceneName = currentSceneName,
-				ZoomX = CurrentZoom.X,
-				ZoomY = CurrentZoom.Y,
+				// ZoomX = CurrentZoom.X,
+				// ZoomY = CurrentZoom.Y,
 				PlayerPosX = player.GlobalPosition.X,
 				PlayerPosY = player.GlobalPosition.Y
 			};
@@ -282,7 +282,7 @@ public partial class Global : Node
 		SaveData data = JsonSerializer.Deserialize<SaveData>(jsonString);
 
 		currentSceneName = data.CurrentSceneName;
-		CurrentZoom = new Vector2(data.ZoomX, data.ZoomY);
+		// CurrentZoom = new Vector2(data.ZoomX, data.ZoomY);
 
 		await TransitionWorldScene(currentSceneName, 0);
 
