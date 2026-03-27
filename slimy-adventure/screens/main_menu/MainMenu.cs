@@ -6,7 +6,7 @@ public partial class MainMenu : Control
 {
 	private async void _on_new_game_pressed()
 	{
-		Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
+		
 		await Global.Instance.TransitionWorldScene("Prison",0);
 	}
 

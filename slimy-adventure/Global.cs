@@ -60,8 +60,8 @@ public partial class Global : Node
 		["Prison"] = "res://screens/world/prison/prison.tscn",
 	};
 
-	public string NextScene = "";
-	public string currentSceneName = "GuardTest";
+
+	public string currentSceneName = "Prison";
 	public async Task TransitionScene(string sceneName)
 	{
 		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
