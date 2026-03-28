@@ -66,40 +66,17 @@ public partial class Global : Node
 		["Field"] = "res://screens/world/field/field.tscn",
 	};
 
-	public string NextScene = "";
-	public string currentSceneName = "GuardTest";
-	// Change 'void' to 'Task' so it can be awaited
+
+	public string currentSceneName = "Prison";
 	public async Task TransitionScene(string sceneName)
 	{
-		if (!sceneDict.ContainsKey(sceneName))
-		{
-			GD.PrintErr($"Transition Error: {sceneName} not found!");
-			return;
-		}
-
 		GetTree().Paused = false;
-		NextScene = sceneDict[sceneName];
+		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		
 		currentSceneName = sceneName;
-
 		_transitionTask = new TaskCompletionSource<bool>();
-		// GetTree().ChangeSceneToFile(sceneDict["LoadingScreen"]);
-		GetTree().ChangeSceneToFile(NextScene);
-
+		GetTree().ChangeSceneToFile(sceneDict[sceneName]);
 		await _transitionTask.Task;
-
-		// Apply the limits from your array directly to the new scene's camera
-		var camera = GetViewport().GetCamera2D();
-		if (camera != null)
-		{
-			camera.LimitLeft = (int)cameraLimits[0].X;
-			camera.LimitTop = (int)cameraLimits[0].Y;
-			camera.LimitRight = (int)cameraLimits[1].X;
-			camera.LimitBottom = (int)cameraLimits[1].Y;
-
-			if (sceneName == "MainMenu") camera.GlobalPosition = Vector2.Zero;
-		}
-
-		GD.Print($"Transition to {sceneName} complete.");
 	}
 
 	public async Task TransitionWorldScene(string sceneName, int playerInstantiatorId)

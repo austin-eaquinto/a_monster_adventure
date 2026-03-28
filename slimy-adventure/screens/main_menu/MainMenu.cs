@@ -4,15 +4,14 @@ using System.Threading.Tasks;
 
 public partial class MainMenu : Control
 {
+    public override void _Ready()
+    {
+        GD.Print($"¿Está el árbol pausado?: {GetTree().Paused}");
+    }
+
 	private async void _on_new_game_pressed()
 	{
-		// Old merge
-		// Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
-		// await Global.Instance.TransitionScene("LoadingScreen");
-		// await Global.Instance.TransitionWorldScene("Prison", 0);
-
-		// new merge
-		Global.Instance.NextScene = "res://screens/world/prison/prison.tscn";
+		
 		await Global.Instance.TransitionWorldScene("Prison",0);
 	}
 
