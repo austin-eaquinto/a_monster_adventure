@@ -17,16 +17,24 @@ public partial class WorldScenePortal : Area2D
 		BodyEntered += onBodyEntered;
 	}
 
-	public async void onBodyEntered(Node2D body)
+	public void onBodyEntered(Node2D body)
 	{
-		if (body == Global.Instance.player)
+		if (body is Player || body.IsInGroup("Player"))
 		{
-			await changeScene();
+			// Call the non-async wrapper instead
+			CallDeferred(nameof(TriggerSceneChange));
 		}
+	}
+
+	// Godot can "see" this method easily
+	private void TriggerSceneChange()
+	{
+		// Fire and forget the Task
+		_ = changeScene();
 	}
 
 	public async Task changeScene()
 	{
-		await Global.Instance.TransitionWorldScene(sceneName,playerInstantiatorId);
+		await Global.Instance.TransitionWorldScene(sceneName, playerInstantiatorId);
 	}
 }

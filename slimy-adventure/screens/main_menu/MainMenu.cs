@@ -4,6 +4,11 @@ using System.Threading.Tasks;
 
 public partial class MainMenu : Control
 {
+    public override void _Ready()
+    {
+        GD.Print($"¿Está el árbol pausado?: {GetTree().Paused}");
+    }
+
 	private async void _on_new_game_pressed()
 	{
 		
@@ -12,7 +17,8 @@ public partial class MainMenu : Control
 
 	private void _on_load_game_pressed()
 	{
-		
+		GD.Print("Load button pressed.");
+		Global.Instance.LoadGame();
 	}
 
 	private void _on_settings_pressed()
