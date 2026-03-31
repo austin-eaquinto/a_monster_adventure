@@ -1,5 +1,6 @@
-[gd_scene load_steps=119 format=4 uid="uid://de57g85b50dkh"]
+[gd_scene load_steps=120 format=4 uid="uid://de57g85b50dkh"]
 
+[ext_resource type="Script" uid="uid://b7wlfg730w6jc" path="res://screens/world/field/Field.cs" id="1_cublg"]
 [ext_resource type="Texture2D" uid="uid://dx0rj7q66cn75" path="res://art/fieldAssets/Autotile_Grass_and_Dirt_Path_Tileset.png" id="1_pg2qj"]
 [ext_resource type="Texture2D" uid="uid://dpiow7a5443hw" path="res://art/fieldAssets/Tileset_Floor_Detail.png" id="2_8npic"]
 [ext_resource type="Texture2D" uid="uid://dvkqhwa6vo1f3" path="res://art/fieldAssets/Nature_Tileset.png" id="2_t5xex"]
@@ -3502,6 +3503,7 @@ sources/1 = SubResource("TileSetAtlasSource_8pb8i")
 
 [node name="Field" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_cublg")
 
 [node name="PlayerInstantiator" type="Node2D" parent="."]
 position = Vector2(2619, 734)

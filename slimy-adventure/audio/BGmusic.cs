@@ -5,14 +5,21 @@ public partial class BGmusic : AudioStreamPlayer
 {
     public void PlayMusic(AudioStream musicStream)
     {
-        // check if the specific song is already playing
-        if (Stream == musicStream)
+        if (musicStream == null) return;
+
+        if (Stream != null && Stream.ResourcePath == musicStream.ResourcePath)
         {
             return;
         }
 
-        // if it's a new song, assign it and play
         Stream = musicStream;
         Play();
+    }
+
+    // Add this new method!
+    public void StopMusic()
+    {
+        Stop(); // Godot's built-in command to stop the audio
+        Stream = null; // Erase the current song from memory so it doesn't block future plays
     }
 }

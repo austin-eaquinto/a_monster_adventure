@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=4 uid="uid://xwkkg3a7hp2x"]
 
 [ext_resource type="Texture2D" uid="uid://dx0rj7q66cn75" path="res://art/fieldAssets/Autotile_Grass_and_Dirt_Path_Tileset.png" id="1_kviv6"]
+[ext_resource type="Script" uid="uid://68glk2ob551t" path="res://screens/world/prison/Prison.cs" id="1_qt6h5"]
 [ext_resource type="Texture2D" uid="uid://dogl8yufs5y1" path="res://art/fieldAssets/House_Tileset.png" id="2_bmgpk"]
-[ext_resource type="AudioStream" uid="uid://c58mg47i0ef5w" path="res://audio/sounds/andorios-arcade_music4-361010.mp3" id="2_u25fj"]
 [ext_resource type="Texture2D" uid="uid://bpvy70ldl8pux" path="res://art/fieldAssets/Exterior_Tileset.png" id="3_6qwwh"]
 [ext_resource type="Texture2D" uid="uid://dvkqhwa6vo1f3" path="res://art/fieldAssets/Nature_Tileset.png" id="4_qt6h5"]
 [ext_resource type="Texture2D" uid="uid://bxm2u5thai1wb" path="res://art/fieldAssets/Crops_Tileset.png" id="5_j2ysf"]
@@ -2740,6 +2740,7 @@ b = Vector2(-30, 1)
 [node name="Prison" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, 17)
+script = ExtResource("1_qt6h5")
 
 [node name="FirstLayer" type="TileMapLayer" parent="."]
 position = Vector2(309, -74)
@@ -2791,7 +2792,3 @@ position = Vector2(2129, 2734)
 script = ExtResource("9_qt6h5")
 limitType = 1
 metadata/_custom_type_script = "uid://daj0rapuafeb3"
-
-[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_u25fj")
-autoplay = true

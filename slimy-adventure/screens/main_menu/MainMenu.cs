@@ -8,6 +8,14 @@ public partial class MainMenu : Control
     public override void _Ready()
     {
 		_clickSound = GetNode<AudioStreamPlayer>("UIClickSound");
+		// Grab the Autoload (using OrNull so it doesn't crash if you test the menu alone)
+        BGmusic bgmNode = GetNodeOrNull<BGmusic>("/root/BGM");
+        
+        // If the Autoload exists, tell it to kill the music!
+        if (bgmNode != null)
+        {
+            bgmNode.StopMusic();
+        }
         GD.Print($"¿Está el árbol pausado?: {GetTree().Paused}");
     }
 
