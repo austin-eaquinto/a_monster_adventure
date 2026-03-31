@@ -58,6 +58,8 @@ public partial class Global : Node
     	["AllyTest"] = "res://screens/world/testing_levels/ally_test_scene.tscn.tscn",
 		["Field"] = "res://screens/world/field/field.tscn",
 		["Prison"] = "res://screens/world/prison/prison.tscn",
+		["SpiderPrison"] = "res://screens/world/spider_prison/SpiderPrison.tscn",
+		["LeftPatrol"] = "res://screens/world/left_patrol/LeftPatrol.tscn",
 	};
 
 	public string NextScene = "";
