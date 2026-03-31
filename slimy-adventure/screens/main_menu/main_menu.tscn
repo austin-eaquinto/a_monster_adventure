@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cebgmrkfi2res"]
+[gd_scene load_steps=9 format=3 uid="uid://cebgmrkfi2res"]
 
 [ext_resource type="Script" uid="uid://bb8ojrh5dn87g" path="res://screens/main_menu/MainMenu.cs" id="1_5k2jx"]
 [ext_resource type="FontFile" uid="uid://dqrnbf7dfsfw1" path="res://art/fonts/ThaleahFat.ttf" id="1_bbmfd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bogg6wfa7xfhr" path="res://art/menu_panel.tres" id="4_tldqp"]
 [ext_resource type="Texture2D" uid="uid://d3flpeio8ih5r" path="res://art/NewGame.tres" id="5_kee05"]
 [ext_resource type="Script" uid="uid://bu62r62qfkeou" path="res://screens/main_menu/Button.cs" id="6_tldqp"]
+[ext_resource type="AudioStream" uid="uid://d1kbr7xxievx3" path="res://audio/sounds/foxboytails-game-start-317318.mp3" id="7_78h0p"]
 
 [sub_resource type="Theme" id="Theme_hwsdy"]
 default_font = ExtResource("1_bbmfd")
@@ -202,6 +203,9 @@ text = "QUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="UIClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_78h0p")
 
 [connection signal="pressed" from="MenuFrame/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuFrame/load_game" to="." method="_on_load_game_pressed"]

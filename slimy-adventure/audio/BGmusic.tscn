@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1vl7cs3gb28i"]
+
+[ext_resource type="AudioStream" uid="uid://c58mg47i0ef5w" path="res://audio/sounds/andorios-arcade_music4-361010.mp3" id="1_n4iss"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_n4iss")
