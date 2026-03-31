@@ -3,12 +3,19 @@ using System;
 
 public partial class Prison : Area2D
 {
+	[Export]
+	public AudioStream bg_music { get; set; }
 	// Called when the node enters the scene tree for the first time.
 
 	private bool _isPlayerNearby = false;
 	public string NextScenePath = "res://screens/world/field/field.tscn";
 	public override void _Ready()
 	{
+		BGmusic bgmNode = GetNode<BGmusic>("/root/BGM");
+		if (bg_music != null)
+		{
+			bgmNode.PlayMusic(bg_music);
+		}
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
 	}

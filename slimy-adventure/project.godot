@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Global.cs"
 PauseMenu="*res://screens/world/pause_menu/pause_menu.tscn"
-BGM="*res://audio/BGmusic.tscn"
+BGM="*res://audio/BGmusic.cs"
 
 [display]
 

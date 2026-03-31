@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1vl7cs3gb28i"]
+[gd_scene load_steps=3 format=3 uid="uid://d1vl7cs3gb28i"]
 
 [ext_resource type="AudioStream" uid="uid://c58mg47i0ef5w" path="res://audio/sounds/andorios-arcade_music4-361010.mp3" id="1_n4iss"]
+[ext_resource type="Script" uid="uid://btete3rj4xfh0" path="res://audio/BGmusic.cs" id="2_bwff0"]
 
-[node name="BackgroundMusic" type="AudioStreamPlayer"]
+[node name="GlobalAudio" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_n4iss")
+script = ExtResource("2_bwff0")
