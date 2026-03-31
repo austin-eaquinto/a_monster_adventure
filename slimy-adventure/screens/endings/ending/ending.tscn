@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=4 uid="uid://c3rbh8kvxjj41"]
+[gd_scene load_steps=30 format=4 uid="uid://c3rbh8kvxjj41"]
 
 [ext_resource type="Script" uid="uid://d3pdnlbfm8qmu" path="res://screens/endings/ending/Ending.cs" id="1_2wsib"]
 [ext_resource type="Texture2D" uid="uid://dx0rj7q66cn75" path="res://art/fieldAssets/Autotile_Grass_and_Dirt_Path_Tileset.png" id="2_ems5j"]
 [ext_resource type="Texture2D" uid="uid://c2lwqvvvsycuf" path="res://art/fieldAssets/Object Animation/Boat.png" id="3_yxgdt"]
 [ext_resource type="FontFile" uid="uid://dqrnbf7dfsfw1" path="res://art/fonts/ThaleahFat.ttf" id="4_2s04o"]
 [ext_resource type="Texture2D" uid="uid://6wdpr47kk20a" path="res://art/CuteSlime_Jiggle.png" id="5_yxgdt"]
+[ext_resource type="Texture2D" uid="uid://d6du0pxpiy1u" path="res://art/Ghost_Hover.png" id="6_uq40g"]
+[ext_resource type="Texture2D" uid="uid://ci70gi1g1i01j" path="res://art/Spider_Dance.png" id="7_x47co"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq40g"]
 texture = ExtResource("2_ems5j")
@@ -195,6 +197,50 @@ region = Rect2(16, 48, 16, 16)
 atlas = ExtResource("5_yxgdt")
 region = Rect2(16, 64, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hbq0"]
+atlas = ExtResource("6_uq40g")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnl0h"]
+atlas = ExtResource("6_uq40g")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3cr0"]
+atlas = ExtResource("6_uq40g")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_behi6"]
+atlas = ExtResource("6_uq40g")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a40lm"]
+atlas = ExtResource("6_uq40g")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2foo0"]
+atlas = ExtResource("6_uq40g")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhith"]
+atlas = ExtResource("7_x47co")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clt7o"]
+atlas = ExtResource("7_x47co")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v51t"]
+atlas = ExtResource("7_x47co")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0dae"]
+atlas = ExtResource("7_x47co")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mfcq"]
+atlas = ExtResource("7_x47co")
+region = Rect2(16, 64, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_e3cr0"]
 animations = [{
 "frames": [{
@@ -214,7 +260,50 @@ animations = [{
 "texture": SubResource("AtlasTexture_n7hbj")
 }],
 "loop": true,
-"name": &"jiggle",
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hbq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnl0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3cr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_behi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a40lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2foo0")
+}],
+"loop": true,
+"name": &"ghost",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhith")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clt7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v51t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0dae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mfcq")
+}],
+"loop": true,
+"name": &"spider",
 "speed": 5.0
 }]
 
@@ -238,7 +327,7 @@ scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_f165t")
 animation = &"float"
 autoplay = "float"
-frame_progress = 0.813277
+frame_progress = 0.41525385
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -275,10 +364,34 @@ theme_override_font_sizes/font_size = 35
 text = "Time"
 horizontal_alignment = 1
 
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 568.0
+offset_right = 651.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("4_2s04o")
+theme_override_font_sizes/font_size = 25
+disabled = true
+text = "Continue"
+
 [node name="playerSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(622, 443)
+position = Vector2(645, 440)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_e3cr0")
-animation = &"jiggle"
-autoplay = "jiggle"
-frame_progress = 0.2237275
+autoplay = "default"
+
+[node name="Ally1" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(560, 440)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_e3cr0")
+
+[node name="Ally2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(475, 440)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_e3cr0")
+frame_progress = 0.29297203
+
+[connection signal="button_down" from="Continue" to="." method="_on_continue_button_down"]
