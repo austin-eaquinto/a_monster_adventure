@@ -81,9 +81,13 @@ public partial class Global : Node
 
 	public async Task TransitionWorldScene(string sceneName, int playerInstantiatorId)
 	{
-		targetInstantiatorId = playerInstantiatorId; // Store the ID
-		CurrentZoom = (sceneName == "Field") ? new Vector2(0.8f, 0.8f) : new Vector2(1.0f, 1.0f);
+		targetInstantiatorId = playerInstantiatorId;
+		// Code from Claude Haiku - Reset camera limits to default before loading new scene
+		cameraLimits = [new Vector2(-10000000,-10000000), new Vector2(10000000,10000000)];
+		
 		await TransitionScene(sceneName);
+		await ToSignal(GetTree(), SceneTree.SignalName.SceneChanged);
+		PrintAllNodes();
 	}
 
 	public void DoPlayerInstantiation(int playerInstantiatorId)
@@ -119,7 +123,7 @@ public partial class Global : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		
+		DoPlayerInstantiation(0);
 		// Connect to the scene_changed signal so we know when the LoadingScreen finishes
 		GetTree().Root.ChildEnteredTree += OnNodeEnteredTree;
 	}
