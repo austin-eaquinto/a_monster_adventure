@@ -9,6 +9,8 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 	[Export]
 	public ShotWebVisual webVisual;
 	[Export]
+	public ShapeCast2D waterDetector;
+	[Export]
 	public float pullSpeed = 800.0f;
 	[Export]
 	public float webLength = 2000.0f;
@@ -33,6 +35,7 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 		if (webMadeContact)
 		{
 			webIsPulling = true;
+			player.SetCollisionMaskValue(2,false);
 		}
 		else
 		{
@@ -62,7 +65,7 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 		foreach (Ally ally in player.followingAllies)
 		{
 			ally.followWeight = 10.0f;
-			ally.detectable = false;
+			ally.hiddenCount += 1;
 		}
 
 		rayCast2D.GlobalPosition = player.GlobalPosition;
@@ -70,9 +73,20 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 		rayCast2D.ForceRaycastUpdate();
 
 		if (rayCast2D.IsColliding()) {
-			webDestination = rayCast2D.GetCollisionPoint();
-			webMadeContact = true;
-			webVisual.shoot(player.GlobalPosition,webDestination);
+			waterDetector.GlobalPosition = rayCast2D.GetCollisionPoint();
+			
+			waterDetector.ForceShapecastUpdate();
+			if (waterDetector.IsColliding()) // is in water, cannot happen
+			{
+				webMadeContact = false;
+				webVisual.shoot(player.GlobalPosition,rayCast2D.GetCollisionPoint());
+			}
+			else
+			{
+				webDestination = rayCast2D.GetCollisionPoint();
+				webMadeContact = true;
+				webVisual.shoot(player.GlobalPosition,webDestination);
+			}
 		}
 		else
 		{
@@ -88,12 +102,11 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
     public override void Exit()
     {
         base.Exit();
-
 		
 		foreach (Ally ally in player.followingAllies)
 		{
 			ally.followWeight = 5.0f;
-			ally.detectable = true;
+			ally.hiddenCount -= 1;
 		}
 
 		webMadeContact = false;
@@ -123,6 +136,7 @@ public partial class PlayerWebAbilityState : PlayerGenericAbilityState
 		player.velocity = localWebDestination.Normalized() * pullSpeed;
 		if (localWebDestination.Length() < distanceThreshold) 
 		{
+			player.SetCollisionMaskValue(2,true);
 			persists = false;
 		}
 	}

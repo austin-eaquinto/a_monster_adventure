@@ -8,7 +8,7 @@ public partial class Character : CharacterBody2D
 	private AnimatedSprite2D animatedSprite {get; set;}= null;
 
 	[Export]
-	public bool detectable = true;
+	public int hiddenCount = 0; // 0 = visible, 1... = hidden
 
 	[Export]
 	public int Speed { get; set; } = 250;
