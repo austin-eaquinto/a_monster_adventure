@@ -64,11 +64,13 @@ public partial class Global : Node
 		["AllyTest"] = "res://screens/world/testing_levels/ally_test_scene.tscn", // Fixed .tscn.tscn
 		["Prison"] = "res://screens/world/prison/prison.tscn", // Fixed path and double extension
 		["Field"] = "res://screens/world/field/field.tscn",
+
 		["SpiderPrison"] = "res://screens/world/spider_prison/SpiderPrison.tscn",
 		["LeftPatrol"] = "res://screens/world/left_patrol/LeftPatrol.tscn",
 		// ["RightRiver"] = "res://screens/world/right_river/RightRiver.tscn",
 		["RightPatrol"] = "res://screens/world/right_patrol/RightPatrol.tscn",
 		["GhostPrison"] = "res://screens/world/ghost_prison/GhostPrison.tscn",
+
 	};
 
 
