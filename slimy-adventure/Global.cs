@@ -60,6 +60,10 @@ public partial class Global : Node
 		["Prison"] = "res://screens/world/prison/prison.tscn",
 		["SpiderPrison"] = "res://screens/world/spider_prison/SpiderPrison.tscn",
 		["LeftPatrol"] = "res://screens/world/left_patrol/LeftPatrol.tscn",
+		["RightRiver"] = "res://screens/world/right_river/RightRiver.tscn",
+		["RightPatrol"] = "res://screens/world/right_patrol/RightPatrol.tscn",
+		["GhostPrison"] = "res://screens/world/ghost_prison/GhostPrison.tscn",
+
 	};
 
 	public string NextScene = "";
