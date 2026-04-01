@@ -60,11 +60,11 @@ public partial class GuardCatchState : CharacterState
 		(character as Guard)._targetPrisoner = null;
 	}
 
-	public async Task endCatch()
+	public void endCatch()
 	{
 		if (caughtPrisonerIsPlayer)
 		{
-			await Global.Instance.TransitionWorldScene("Prison",0);
+			Global.Instance.TransitionWorldScene("Prison",0);
 		}
 		(character as Guard).state = Guard.GuardStates.Pause;
 	}

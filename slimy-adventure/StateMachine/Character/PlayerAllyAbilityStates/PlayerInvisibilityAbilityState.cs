@@ -45,13 +45,13 @@ public partial class PlayerInvisibilityAbilityState : PlayerGenericAbilityState
 		if (player != null)
 		{
 			player.Modulate = new Color(1,1,1,0.3f);
-			player.detectable = false;
+			player.hiddenCount += 1;
 
 			foreach (Ally ally in player.followingAllies)
 			{
 				invisibleAllies.Add(ally);
 				ally.Modulate = new Color(1,1,1,0.3f);
-				ally.detectable = false;
+				ally.hiddenCount += 1;
 			}
 		}
 	}
@@ -61,14 +61,14 @@ public partial class PlayerInvisibilityAbilityState : PlayerGenericAbilityState
 		if (player != null)
 		{
 			player.Modulate = new Color(1,1,1,1f);
-			player.detectable = true;
+			player.hiddenCount -= 1;
 
 			foreach (Ally ally in invisibleAllies.Reverse<Ally>())
 			{
 				GD.Print("Removed Invis Ally.");
 				invisibleAllies.Remove(ally);
 				ally.Modulate = new Color(1,1,1,1f);
-				ally.detectable = true;
+				ally.hiddenCount -= 1;
 			}
 		}
         base.Exit();
