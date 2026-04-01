@@ -45,7 +45,7 @@ public partial class AllyFollowState : CharacterState
 	public void PrepareFlee(Vector2 alertPosition, Character spottedPrisoner)
 	{
 		GD.Print("Ally flees");
-		if (spottedPrisoner == (character as Ally) || spottedPrisoner == player)
+		if ((spottedPrisoner == (character as Ally) || spottedPrisoner == player) && (character as Character).hiddenCount == 0)
 		{
 			(character as Ally).state = Ally.AllyStates.Flee;
 		}

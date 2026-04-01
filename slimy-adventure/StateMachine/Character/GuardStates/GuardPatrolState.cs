@@ -30,7 +30,7 @@ public partial class GuardPatrolState : CharacterState
 			line2D = (character as Guard).line2D;
 			
 			if (line2D != null)
-				GetRandomPoint();//GetClosestPoint();
+				GetClosestPoint();//GetRandomPoint();//
 		}
 		Global.Instance.Connect("AlertGuards",new Callable(this,"PrepareInvestigate"));
 		if (character != null) (character as Character).animation_name = "walk_";
