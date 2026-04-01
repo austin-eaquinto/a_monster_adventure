@@ -4034,6 +4034,36 @@ line2D = NodePath("../path_for_guard_3")
 points = PackedVector2Array(2438, 2171, 4014, 2198, 3584, 2968, 2465, 2784)
 default_color = Color(1, 1, 1, 0)
 
+[node name="Guard4" parent="." node_paths=PackedStringArray("line2D") instance=ExtResource("13_7mlya")]
+y_sort_enabled = true
+position = Vector2(2107, 919)
+collision_mask = 1
+line2D = NodePath("../path_for_guard_4")
+
+[node name="path_for_guard_4" type="Line2D" parent="."]
+points = PackedVector2Array(2065, 832, 1281, 838, 1303, 1099, 2054, 1132)
+default_color = Color(1, 1, 1, 0)
+
+[node name="Guard5" parent="." node_paths=PackedStringArray("line2D") instance=ExtResource("13_7mlya")]
+y_sort_enabled = true
+position = Vector2(1995, 1581)
+collision_mask = 1
+line2D = NodePath("../path_for_guard_5")
+
+[node name="path_for_guard_5" type="Line2D" parent="."]
+points = PackedVector2Array(2026, 1599, 1537, 1599, 1526, 2100, 1987, 2089)
+default_color = Color(1, 1, 1, 0)
+
+[node name="Guard6" parent="." node_paths=PackedStringArray("line2D") instance=ExtResource("13_7mlya")]
+y_sort_enabled = true
+position = Vector2(3797, 1314)
+collision_mask = 1
+line2D = NodePath("../path_for_guard_6")
+
+[node name="path_for_guard_6" type="Line2D" parent="."]
+points = PackedVector2Array(3750, 1366, 4478, 1472, 4028, 2200, 3739, 3006, 4556, 3017, 4100, 2211)
+default_color = Color(1, 1, 1, 0)
+
 [node name="CameraLimitMarker" type="Node2D" parent="."]
 position = Vector2(1266, 532)
 script = ExtResource("9_guacd")
