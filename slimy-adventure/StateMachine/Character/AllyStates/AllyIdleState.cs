@@ -51,6 +51,9 @@ public partial class AllyIdleState : CharacterState
 		{
 			var dialogic = GetNode("/root/Dialogic");
 			dialogic.Call("start", "ghostHello");
+		}else if(id ==1){
+			var dialogic = GetNode("/root/Dialogic");
+			dialogic.Call("start", "spiderHello");
 		}
 	}
 

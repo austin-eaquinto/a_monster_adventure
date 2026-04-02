@@ -1,0 +1,8 @@
+Hello I'm spidey. They trapped me in this farm time ago.
+It has been difficult trying to escape. I have tried many times and I could not make it.
+If you help me getting out of here I can give you my web and we can use it with trees reach things quickly.
+You need to use the SPACE BAR to use it, and it has a cooldown of 10 seconds.
+Please help me to get out of here I want to see my family.
+Oh... and remember if a guard see us we cannot use my web anymore.
+- Let's go out of this farm
+	[signal arg="follow_player"]

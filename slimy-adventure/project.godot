@@ -27,7 +27,8 @@ directories/dch_directory={
 "ghost": "res://characters/allies/ghost.dch"
 }
 directories/dtl_directory={
-"ghostHello": "res://ghostHello.dtl"
+"ghostHello": "res://ghostHello.dtl",
+"spiderHello": "res://spiderHello.dtl"
 }
 layout/style_directory={}
 
