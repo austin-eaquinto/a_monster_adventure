@@ -19,6 +19,8 @@ public partial class WorldScenePortal : Area2D
 
 	public void onBodyEntered(Node2D body)
 	{
+		if(body is Ally) return;
+
 		if (body is Player || body.IsInGroup("Player"))
 		{
 			// Call the non-async wrapper instead

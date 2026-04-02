@@ -30,6 +30,8 @@ public partial class AllyIdleState : CharacterState
 	{
 		if(argument == "follow_player")
 		{
+			var dialogic = GetNode("/root/Dialogic");
+			dialogic.Disconnect("signal_event", Callable.From<string>(OnDialogicSignal));
 			isPlayerClose = false;
 			(character as Ally).state = Ally.AllyStates.PerfectFollow;
 		}
@@ -37,7 +39,7 @@ public partial class AllyIdleState : CharacterState
 
     public override void _Process(double delta)
     {
-        if(isPlayerClose && Input.IsActionJustPressed("interact"))
+        if(isPlayerClose && Input.IsActionJustPressed("interact") && !Global.Instance.inDialogue)
 		{
 			run_dialogue((character as Ally).id);
 		}
@@ -69,7 +71,7 @@ public partial class AllyIdleState : CharacterState
 		}
 		else
 		{
-			(character as Ally).state = Ally.AllyStates.PerfectFollow;
+			//(character as Ally).state = Ally.AllyStates.PerfectFollow;
 			isPlayerClose = true;
 		}
 	}

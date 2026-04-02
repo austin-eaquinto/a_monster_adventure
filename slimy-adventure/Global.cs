@@ -9,6 +9,7 @@ public partial class Global : Node
 	
 	public static Global Instance { get; private set; }
 	public Player player {get; set;}
+	public bool inDialogue { get; set; } = false;
 	public Vector2 CurrentZoom { get; set; } = new Vector2(1.0f, 1.0f);
 	public bool IsLoadingFromSave { get; private set; } = false;
     private TaskCompletionSource<bool> _transitionTask;
@@ -133,6 +134,17 @@ public partial class Global : Node
 		DoPlayerInstantiation(0);
 		// Connect to the scene_changed signal so we know when the LoadingScreen finishes
 		GetTree().Root.ChildEnteredTree += OnNodeEnteredTree;
+		CallDeferred(nameof(ConnectDialogic));
+	}
+
+	private void ConnectDialogic()
+	{
+		var dialogic = GetNodeOrNull("/root/Dialogic");
+		if (dialogic != null)
+		{
+			dialogic.Connect("timeline_started", Callable.From(() => { inDialogue = true; }));
+			dialogic.Connect("timeline_ended", Callable.From(() => { inDialogue = false; }));
+		}
 	}
 
 	private void OnNodeEnteredTree(Node node)
@@ -141,10 +153,7 @@ public partial class Global : Node
 		string nodeName = node.Name.ToString().ToLower();
 
 		// 1. Identify if we are in a playable world scene
-		bool isWorld = nodeName != "mainmenu" && 
-					nodeName != "loading_screen" && 
-					nodeName != "root" && 
-					nodeName != "pausemenu";
+		bool isWorld = node is WorldScene;
 
 		if (isWorld)
 		{

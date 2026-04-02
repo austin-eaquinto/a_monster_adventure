@@ -42,7 +42,7 @@ public partial class PlayerGenericAbilityState : CharacterState
 
 	public override bool EvaluateStateCondition()
     {
-		return Input.IsActionJustPressed(inputName) && timedOut;
+		return Input.IsActionJustPressed(inputName) && timedOut && !Global.Instance.inDialogue;
     }
 
 }

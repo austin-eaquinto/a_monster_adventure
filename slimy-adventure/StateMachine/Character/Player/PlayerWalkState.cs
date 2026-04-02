@@ -13,7 +13,7 @@ public partial class PlayerWalkState : CharacterState
 	public override bool EvaluateStateCondition()
 	{
 		Vector2 input = Input.GetVector("move_left","move_right","move_up","move_down");
-		return input != Vector2.Zero;
+		return input != Vector2.Zero && !Global.Instance.inDialogue;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
