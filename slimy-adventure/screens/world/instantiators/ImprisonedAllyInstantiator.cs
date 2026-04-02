@@ -17,6 +17,7 @@ public partial class ImprisonedAllyInstantiator : Node2D
             newAlly.GlobalPosition = GlobalPosition;
             newAlly.id = allyId;
             newAlly.Connect("Captured",new Callable(this,"DoInstantiation"));
+            newAlly.isFree = false;
         }
     }
 

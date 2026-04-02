@@ -8,6 +8,10 @@ public partial class Ally : Character
 	public int id {get; set;} = 0;
 	[Export]
 	public float followWeight {get; set;} = 5.0f;
+
+
+	public bool isFree = true;
+
 	[Export]
 	public StateHandler abilityStateBranch {get; set;} = null;
 	public StateHandlerLink abilityStateBranchLink = null;

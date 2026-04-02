@@ -7,8 +7,6 @@ using System.Drawing;
 public partial class AllyIdleState : CharacterState
 {
 
-	bool isPlayerClose = false;
-
 	[Export]
 	public Area2D joinArea { get; set;} = null;
 
@@ -26,6 +24,7 @@ public partial class AllyIdleState : CharacterState
 		dialogic.Connect("signal_event", Callable.From<string>(OnDialogicSignal));
 	}
 
+	bool isPlayerClose = false;
 	private void OnDialogicSignal(string argument)
 	{
 		if(argument == "follow_player")
@@ -74,6 +73,9 @@ public partial class AllyIdleState : CharacterState
 		}
 		else
 		{
+			if((character as Ally).isFree){
+				(character as Ally).state = Ally.AllyStates.PerfectFollow;
+			}
 			//(character as Ally).state = Ally.AllyStates.PerfectFollow;
 			isPlayerClose = true;
 		}
