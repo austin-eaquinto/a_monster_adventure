@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://db0hvgb2v5t6p"]
+[gd_scene load_steps=5 format=3 uid="uid://db0hvgb2v5t6p"]
 
 [ext_resource type="Script" uid="uid://dhinkl5pwt48m" path="res://StateMachine/Character/PlayerAllyAbilityStates/PlayerWebAbilityState.cs" id="1_ntaa6"]
 [ext_resource type="PackedScene" uid="uid://diucvhbxjk21e" path="res://StateMachine/Character/PlayerAllyAbilityStates/shot_web_visual.tscn" id="2_01iys"]
+[ext_resource type="AudioStream" uid="uid://br5wdcr45d5th" path="res://audio/sounds/mixkit-explainer-video-game-alert-sweep-236.wav" id="3_ibvqo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_01iys"]
 radius = 40.0
@@ -18,6 +19,10 @@ metadata/_custom_type_script = "uid://dhinkl5pwt48m"
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="ShotWebVisual" parent="." instance=ExtResource("2_01iys")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ShotWebVisual"]
+stream = ExtResource("3_ibvqo")
+autoplay = true
 
 [node name="WaterDetector" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_01iys")

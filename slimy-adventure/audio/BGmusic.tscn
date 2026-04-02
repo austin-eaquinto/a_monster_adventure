@@ -6,4 +6,5 @@
 [node name="BGM" type="AudioStreamPlayer"]
 process_mode = 3
 stream = ExtResource("1_n4iss")
+volume_db = -30.0
 script = ExtResource("2_bwff0")

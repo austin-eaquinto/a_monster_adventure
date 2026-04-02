@@ -1,10 +1,11 @@
-[gd_scene load_steps=55 format=3 uid="uid://deqykafkvcrkt"]
+[gd_scene load_steps=56 format=3 uid="uid://deqykafkvcrkt"]
 
 [ext_resource type="PackedScene" uid="uid://c6y8h5xoghkgt" path="res://characters/allies/ally.tscn" id="1_1bbiq"]
 [ext_resource type="Texture2D" uid="uid://d6du0pxpiy1u" path="res://art/Ghost_Hover.png" id="2_1bbiq"]
 [ext_resource type="Script" uid="uid://d12yksriwei62" path="res://StateMachine/Character/CharacterStateHandler.cs" id="2_mopgy"]
 [ext_resource type="Texture2D" uid="uid://cuqrhymxxu8vf" path="res://art/Ghost_Glide.png" id="3_mopgy"]
 [ext_resource type="Script" uid="uid://cpqtuw31cp3li" path="res://StateMachine/Character/PlayerAllyAbilityStates/PlayerInvisibilityAbilityState.cs" id="3_tle8y"]
+[ext_resource type="AudioStream" uid="uid://b5x7lb0w3y8a" path="res://audio/sounds/mixkit-game-ball-tap-2073.wav" id="6_tle8y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mopgy"]
 atlas = ExtResource("2_1bbiq")
@@ -403,3 +404,7 @@ script = ExtResource("3_tle8y")
 cooldownTime = 10.0
 inputName = "invisibility_ability"
 metadata/_custom_type_script = "uid://cpqtuw31cp3li"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AbilityStateBranch/PlayerInvisibilityAbilityState" index="0"]
+stream = ExtResource("6_tle8y")
+autoplay = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://c3rbh8kvxjj41"]
+[gd_scene load_steps=31 format=4 uid="uid://c3rbh8kvxjj41"]
 
 [ext_resource type="Script" uid="uid://d3pdnlbfm8qmu" path="res://screens/endings/ending/Ending.cs" id="1_2wsib"]
 [ext_resource type="Texture2D" uid="uid://dx0rj7q66cn75" path="res://art/fieldAssets/Autotile_Grass_and_Dirt_Path_Tileset.png" id="2_ems5j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://6wdpr47kk20a" path="res://art/CuteSlime_Jiggle.png" id="5_yxgdt"]
 [ext_resource type="Texture2D" uid="uid://d6du0pxpiy1u" path="res://art/Ghost_Hover.png" id="6_uq40g"]
 [ext_resource type="Texture2D" uid="uid://ci70gi1g1i01j" path="res://art/Spider_Dance.png" id="7_x47co"]
+[ext_resource type="AudioStream" uid="uid://um66lp1utmfh" path="res://audio/sounds/stdmire-there-is-a-shark-nearby-240313.mp3" id="8_x47co"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq40g"]
 texture = ExtResource("2_ems5j")
@@ -393,5 +394,9 @@ position = Vector2(475, 440)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_e3cr0")
 frame_progress = 0.29297203
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_x47co")
+autoplay = true
 
 [connection signal="button_down" from="Continue" to="." method="_on_continue_button_down"]
