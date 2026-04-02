@@ -370,6 +370,7 @@ radius = 50.0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ug7p0")
+detectable = null
 Speed = 275
 metadata/_edit_group_ = true
 
@@ -388,6 +389,7 @@ neighbor_distance = 24256.88
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 modulate = Color(0, 1, 1, 1)
+collision_mask = 3
 
 [node name="CharacterStateHandler" type="Node" parent="."]
 script = ExtResource("3_3xgsk")

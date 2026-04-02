@@ -113,7 +113,7 @@ public partial class Guard : Character
 			return false;
 		}
 
-		if (!prisoner.detectable)
+		if (prisoner.hiddenCount > 0)
 		{
 			return false;
 		}

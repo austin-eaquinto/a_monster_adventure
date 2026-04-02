@@ -1,15 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://db0hvgb2v5t6p"]
+[gd_scene load_steps=4 format=3 uid="uid://db0hvgb2v5t6p"]
 
 [ext_resource type="Script" uid="uid://dhinkl5pwt48m" path="res://StateMachine/Character/PlayerAllyAbilityStates/PlayerWebAbilityState.cs" id="1_ntaa6"]
 [ext_resource type="PackedScene" uid="uid://diucvhbxjk21e" path="res://StateMachine/Character/PlayerAllyAbilityStates/shot_web_visual.tscn" id="2_01iys"]
 
-[node name="PlayerWebAbilityState" type="Node" node_paths=PackedStringArray("rayCast2D", "webVisual")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_01iys"]
+radius = 40.0
+
+[node name="PlayerWebAbilityState" type="Node" node_paths=PackedStringArray("rayCast2D", "webVisual", "waterDetector")]
 script = ExtResource("1_ntaa6")
 rayCast2D = NodePath("RayCast2D")
 webVisual = NodePath("ShotWebVisual")
+waterDetector = NodePath("WaterDetector")
 cooldownTime = 10.0
+inputName = "web_ability"
 metadata/_custom_type_script = "uid://dhinkl5pwt48m"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="ShotWebVisual" parent="." instance=ExtResource("2_01iys")]
+
+[node name="WaterDetector" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_01iys")
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 2
