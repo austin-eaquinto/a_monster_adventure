@@ -4100,6 +4100,7 @@ script = ExtResource("10_cublg")
 metadata/_custom_type_script = "uid://bbn5gau0ofq25"
 
 [node name="StuckSlime" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1767, 1861)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ke7b3")

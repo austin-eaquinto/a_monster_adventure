@@ -370,7 +370,6 @@ radius = 50.0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ug7p0")
-detectable = null
 Speed = 275
 metadata/_edit_group_ = true
 
