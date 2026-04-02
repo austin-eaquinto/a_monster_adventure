@@ -3747,7 +3747,7 @@ collision_mask = 1
 line2D = NodePath("../path4")
 
 [node name="path4" type="Line2D" parent="."]
-points = PackedVector2Array(3557, 1160, 2677, 957)
+points = PackedVector2Array(3420, 1149, 2677, 957)
 default_color = Color(1, 1, 1, 0)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

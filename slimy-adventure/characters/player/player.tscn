@@ -372,7 +372,7 @@ shader_parameter/pixel_size = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3t07l"]
 shader = ExtResource("6_x5dtk")
-shader_parameter/depolarize_pixel_dir = Vector2(4, 0)
+shader_parameter/depolarize_pixel_dir = Vector2(2, 0)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "abilitiesStateBranch") groups=["Prisoner"]]
 y_sort_enabled = true
