@@ -4,6 +4,10 @@ using System;
 
 public partial class PauseMenu : CanvasLayer
 {
+    [Export] Button resume;
+    [Export] Button save;
+    [Export] Button load;
+    [Export] Button quit;
     /* 
         Next steps
         - fix pause menu appearing on main menu

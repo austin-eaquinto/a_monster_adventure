@@ -13,6 +13,7 @@ public partial class Ending : Control
 	
 	public override void _Ready()
 	{
+		
 		finishTime = GetNode<Label>("VBoxContainer/Time");
 		endMessage = GetNode<Label>("VBoxContainer/Message");
 		congratsMessage = GetNode<Label>("VBoxContainer/Label");
